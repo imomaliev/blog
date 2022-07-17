@@ -5,13 +5,13 @@ draft: false
 tags: ["hugo", "blog", "terraform", "pre-commit", "editorconfig"]
 ---
 
-# `git init`
+## `git init`
 
 I started by dogfooding[^1] my [template repository](https://github.com/imomaliev/library-template). It allows me to use [`terraform`](http://terraform.io) to manage GitHub repository declaratively. If you're not familiar with "Infrastructure as Code" I highly recommend giving it a try, the declarative approach to configuration management and resource provisioning makes repetitive tasks so much easier. Also, it already has [`editorconfig`](https://editorconfig.org) and [`pre-commit`](https://pre-commit.com) configuration.
 
 After I initialized my blog with terraform and configured git to use created repo as a `remote`. I am ready to create new Hugo site.
 
-# `hugo new site`
+## `hugo new site`
 
 1. Create empty Hugo site
     ```console

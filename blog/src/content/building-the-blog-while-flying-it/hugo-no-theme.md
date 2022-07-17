@@ -1,15 +1,15 @@
 ---
-title: "Hugo No Theme"
+title: "Hugo no theme"
 date: 2022-07-17T20:23:58+07:00
 draft: false
 tags: ["hugo", "blog", "pre-commit", "editorconfig"]
 ---
 
-# Using Hugo without theme
+## Using Hugo without theme
 
 In [quick start](https://gohugo.io/getting-started/quick-start/) guide and many online tutorials, new projects are advised to use one of the existing themes or create a new one. But after reading official docs, I've decided not to use any theme in my [previous blog version](https://github.com/imomaliev/blog-v1). I am going to do the same for this new project. If in the future some of my functionality will look like it could be decoupled from the blog, I will create a theme but for now, I do not see any need for one.
 
-# How to start Hugo project without a theme
+## How to start Hugo project without a theme
 
 It is actually pretty easy. First, you need to understand how hugo [project structure](https://gohugo.io/getting-started/directory-structure/) works. Basically, hugo will look for needed files in the root folder and if it can't find them, it will try to look them up in the theme folder. Most of the themes provide us with `archetypes`, `assets`, `layouts` and `static` folders. For example, If we create a new theme with `hugo new theme` we will get this directory structure.
 
@@ -37,7 +37,7 @@ themes/theme
 
 As you can see it, most of the files created by cli are in `layouts` folder, so we just can copy it to our root. This will provide use with basic scaffold for our project.
 
-# Configure pre-commit and editorconfig to format hugo templates
+## Configure pre-commit and editorconfig to format hugo templates
 
 If you've read previous blog posts in this series, you may have noticed that I use `pre-commit` and `editorconfig` to ensure that all files in the project are validated and autoformated. To add support for `gohtml` file type, we are going to use [`prettier-plugin-go-template`](https://www.npmjs.com/package/prettier-plugin-go-template).
 
@@ -86,6 +86,6 @@ index f96ee19..22fe08f 100644
 
 Finally, we are going to add `html` to `.editorconfig`. And we are done.
 
-# Extra
+## Extra
 
 There is also another `gohtml` file type formatter, you can find it here [https://github.com/Riverside-Healthcare/djlint](https://github.com/Riverside-Healthcare/djlint).
