@@ -7,7 +7,7 @@ tags: ["hugo", "blog", "terraform", "pre-commit", "editorconfig"]
 
 # New beginnings
 
-In the February 2022 I finally decided to create my personal blog. I've chosen to [`Hugo`](https://gohugo.io) as a framework for building it. On the landing page, it bravely declares:
+In the February 2022 I finally decided to create my personal blog. I've chosen the [`Hugo`](https://gohugo.io) as a framework for building it. On the landing page, it bravely declares:
 
 > The world’s fastest framework for building websites.
 > With its amazing speed and flexibility, Hugo makes building websites fun again.

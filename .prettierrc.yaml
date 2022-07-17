@@ -11,3 +11,10 @@ overrides:
           - "*.md"
       options:
           tabWidth: 4
+    # https://github.com/NiklasPor/prettier-plugin-go-template
+    - files:
+          - "blog/src/layouts/**/*.html"
+      options:
+          parser: go-template
+          tabWidth: 4
+          printWidth: 88
