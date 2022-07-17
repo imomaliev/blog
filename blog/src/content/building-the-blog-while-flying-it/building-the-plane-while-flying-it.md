@@ -2,7 +2,7 @@
 title: "Building the plane while flying it"
 date: 2022-07-17T11:33:35+07:00
 draft: false
-tags: ["hugo", "terraform", "pre-commit", "editorconfig"]
+tags: ["hugo", "blog", "terraform", "pre-commit", "editorconfig"]
 ---
 
 # New beginnings

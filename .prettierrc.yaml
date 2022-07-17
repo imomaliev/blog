@@ -3,6 +3,7 @@ overrides:
     - files:
           - "*.yaml"
           - "*.yml"
+          - "*.json"
       options:
           tabWidth: 4
           printWidth: 88
