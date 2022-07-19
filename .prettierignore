@@ -1,2 +1,6 @@
+# https://prettier.io/docs/en/ignore.html#ignoring-files-prettierignore
+# By default prettier ignores files in version control systems directories (".git", ".svn" and ".hg") and node_modules
 # Ignore artifacts:
 /_terraform/.terraform/
+
+package-lock.json
