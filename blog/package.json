@@ -1,4 +1,7 @@
 {
+    "scripts": {
+        "start": "hugo --source src server --baseURL http://localhost/"
+    },
     "devDependencies": {
         "autoprefixer": "^10.4.7",
         "postcss": "^8.4.14",
