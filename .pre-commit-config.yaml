@@ -26,6 +26,7 @@ repos:
             additional_dependencies:
                 - "prettier@2.7.1"
                 - "prettier-plugin-go-template@0.0.13"
+                - "prettier-plugin-tailwindcss@0.1.12"
     - repo: https://github.com/antonbabenko/pre-commit-terraform
       rev: v1.74.1
       hooks:
