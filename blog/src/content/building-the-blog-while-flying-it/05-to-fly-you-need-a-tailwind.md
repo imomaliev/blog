@@ -1,13 +1,13 @@
 ---
 title: "To fly you need a tailwind"
 date: 2022-07-19T16:45:07+07:00
-draft: true
+draft: false
 tags: ["hugo", "tailwindcss", "postcss", "npm"]
 ---
 
 ## Why TailwindCSS
 
-In one of my previous projects, I fall in love with [TailwindCSS](https://tailwindcss.com). I know that this is a very controversial framework for some, but for me, personally, as a backend developer of 11 years, it was the first time I had a fun time adding styles to the frontend. I even created [vue-ts template](https://github.com/imomaliev/vue-ts-tailwind) with it, as a part of [another articles' series](https://dev.to/imomaliev/series/13950).
+In one of my previous projects, I fell in love with [TailwindCSS](https://tailwindcss.com). I know that this is a very controversial framework for some, but for me, personally, as a backend developer of 11 years, it was the first time I had a fun time adding styles to the frontend. I even created [vue-ts template](https://github.com/imomaliev/vue-ts-tailwind) with it, as a part of [another articles' series](https://dev.to/imomaliev/series/13950).
 
 ## Asset management in Hugo
 

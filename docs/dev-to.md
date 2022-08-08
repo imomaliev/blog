@@ -1,5 +1,9 @@
 # Dev.to features/pecularities that should be considered
 
+## Editor's guide
+
+Link: https://dev.to/p/editor_guide
+
 ## Accessibility suggestion
 
 > Improve the accessibility of your post
@@ -14,3 +18,7 @@
 ## Front Matter
 
 Leaving front matter in the beginning of the article bricks dev.to's editor. So we have to manually insert tags and set title
+
+## Cover image
+
+The best size is 1000 x 420.

@@ -1,8 +1,10 @@
 {{ define "main" }}
-    <h1>{{ .Site.Title }}</h1>
+    <h1 class="text-5xl font-bold">{{ .Site.Title }}</h1>
     {{ range .Pages }}
         <article>
-            <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+            <h2 class="text-4xl underline">
+                <a href="{{ .Permalink }}">{{ .Title }}</a>
+            </h2>
         </article>
     {{ end }}
 {{ end }}

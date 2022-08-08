@@ -22,10 +22,11 @@ repos:
       rev: v2.7.1
       hooks:
           - id: prettier
-            types_or: [yaml, markdown, json, html, css]
+            types_or: [yaml, markdown, json, html, css, javascript]
             additional_dependencies:
                 - "prettier@2.7.1"
                 - "prettier-plugin-go-template@0.0.13"
+                - "prettier-plugin-tailwindcss@0.1.12"
     - repo: https://github.com/antonbabenko/pre-commit-terraform
       rev: v1.74.1
       hooks:
