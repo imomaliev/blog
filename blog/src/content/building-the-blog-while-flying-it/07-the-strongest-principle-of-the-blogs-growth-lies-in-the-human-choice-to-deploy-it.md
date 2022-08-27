@@ -71,7 +71,7 @@ jobs:
                   publish_dir: ./public
 ```
 
-We will save it as `.github/workflows/gh-pages.yaml`. **Note** I preffer using `yaml` extension instead of `yml`[^2]
+We will save it as `.github/workflows/gh-pages.yaml`. **NOTE:** I preffer using `yaml` extension instead of `yml`[^2]
 
 ### Updating workflow for our project
 
@@ -81,10 +81,11 @@ Example workflow file I copied from Hugo setup action wouldn't work for our proj
 -   Add links to used custom actions' documentation
 -   Update and freeze actions and packages versions. I decided to use the same versions that I am using locally.
 -   Add `working-directory: ./blog` [option](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsrun) to jobs because actual blog source files not located in the root of the project, but in the `blog/` directory.
+-   Remove unused parts of the workflow
 
 but some changes may not be so obvious so let's discussus them
 
-### Using setup-node action's cache option
+#### Using setup-node action's cache option
 
 In the copied example npm caching is done via [`actions/cache@v2`](https://github.com/actions/cache) action. But we can simplify our workflow by dropping this step and using [built-in functionality for caching](https://github.com/actions/setup-node#caching-global-packages-data)
 
@@ -119,7 +120,57 @@ index 401fd33..3ddf6dd 100644
 +                  cache-dependency-path: ./blog/package-lock.json
 ```
 
-Let's start updating workflow file to work with our project structure. Here is a diff of changes I did.
+I thought that this change will be usefull for all Setup Hugo users so I've created [PR with these changes](https://github.com/peaceiris/actions-hugo/pull/602) to update action's example. PR was accepted right away
+
+![setup hugo PR](/building-the-blog-while-flying-it/07-the-strongest-principle-of-the-blogs-growth-lies-in-the-human-choice-to-deploy-it/setup-hugo-pr.png)
+
+so if you follow same steps as I did you will not have to do this manually 😎
+
+#### Building blog in node environment
+
+For some reason when build it normally via `hugo --minify` PostCSS does not pick up TailwindCSS's styles. I solve this by running `hugo server` and build via NPM
+
+```diff
+diff --git a/.github/workflows/gh-pages.yaml b/.github/workflows/gh-pages.yaml
+index 401fd33..3ddf6dd 100644
+--- a/.github/workflows/gh-pages.yaml
++++ b/.github/workflows/gh-pages.yaml
+@@ -39,10 +39,13 @@ jobs:
+                   restore-keys: |
+                       ${{ runner.os }}-node-
+
+-            - run: npm ci
++            - name: Install npm dependencies
++              working-directory: ./blog/
++              run: npm ci
+
+             - name: Build
+-              run: hugo --minify
++              working-directory: ./blog/
++              run: npm run build
+
+             - name: Deploy
+               uses: peaceiris/actions-gh-pages@v3
+diff --git a/blog/package.json b/blog/package.json
+index 4a4876d..49334d7 100644
+--- a/blog/package.json
++++ b/blog/package.json
+@@ -1,6 +1,7 @@
+ {
+   "scripts": {
+-    "start": "hugo --source src server --baseURL http://localhost/"
++    "start": "hugo --source src server --baseURL http://localhost/",
++    "build": "hugo --source src --minify"
+   },
+   "devDependencies": {
+     "@tailwindcss/typography": "^0.5.4",
+```
+
+#### Use Ubuntu 22.04
+
+You also may have noted that we are using ubuntu 22.04. On August 9 2022 this version become [generally available](https://github.blog/changelog/2022-08-09-github-actions-ubuntu-22-04-is-now-generally-available-on-github-hosted-runners/). At the start I've used `runs-on: ubuntu-22.04` only in this workflow to check that everything works ok. After that I pushed PR which adds support for this ubuntu version to Hugo Setup https://github.com/peaceiris/actions-hugo/pull/603 and GitHub Pages Action https://github.com/peaceiris/actions-gh-pages/pull/776
+
+#### Final diff of changes
 
 ```diff
 diff --git a/.github/workflows/gh-pages.yaml b/.github/workflows/gh-pages.yaml
@@ -194,7 +245,21 @@ index 401fd33..3ddf6dd 100644
 +                  publish_dir: ./blog/src/public
 ```
 
-https://github.com/peaceiris/actions-hugo/pull/602
+## Bugs
+
+While I was re-reading this article to find issues in my spelling. I noticed something wierd
+![chroma-bug](/building-the-blog-while-flying-it/07-the-strongest-principle-of-the-blogs-growth-lies-in-the-human-choice-to-deploy-it/chroma-bug.png)
+this is definatelly a bug. I started looking into it. At first I thought the issue is in Hugo itself, but after trying to [make minimal reproducible example](https://en.wikipedia.org/wiki/Minimal_reproducible_example) I was falling deeper and deeper in the rabbithole of dependencies. Turns out issue was 4 layers deep.
+
+[Hugo](https://github.com/gohugoio/hugo) -> [goldmark](https://github.com/yuin/goldmark) -> [goldmark-highlighting](https://github.com/yuin/goldmark-highlighting) -> [chroma](https://github.com/alecthomas/chroma)
+And there is already a [bug report](https://github.com/alecthomas/chroma/issues/475)
+
+```yaml
+multistringkey: |
+    test
+
+key: string
+```
 
 ## Links
 
@@ -207,6 +272,16 @@ https://github.com/peaceiris/actions-hugo/pull/602
 -   https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsrun
 -   https://github.com/actions/cache
 -   https://github.com/actions/setup-node#caching-global-packages-data
+-   https://github.com/peaceiris/actions-hugo/pull/602
+-   https://github.blog/changelog/2022-08-09-github-actions-ubuntu-22-04-is-now-generally-available-on-github-hosted-runners/
+-   https://github.com/peaceiris/actions-hugo/pull/603
+-   https://github.com/peaceiris/actions-gh-pages/pull/776
+-   https://en.wikipedia.org/wiki/Minimal_reproducible_example
+-   https://github.com/gohugoio/hugo
+-   https://github.com/yuin/goldmark
+-   https://github.com/yuin/goldmark-highlighting
+-   https://github.com/alecthomas/chroma/issues/475
+-
 
 [^1]: [Quote by George Eliot](https://www.brainyquote.com/quotes/george_eliot_382778)
 [^2]: [Please use ".yaml" when possible.](https://yaml.org/faq.html)
