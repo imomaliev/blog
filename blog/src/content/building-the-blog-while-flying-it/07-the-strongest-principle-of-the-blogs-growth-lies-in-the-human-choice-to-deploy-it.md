@@ -69,6 +69,10 @@ jobs:
                   publish_dir: ./public
 ```
 
+### Configuring workflow for our project
+
+https://github.com/peaceiris/actions-hugo/pull/602
+
 ## Links
 
 -   https://github.com/imomaliev/blog
