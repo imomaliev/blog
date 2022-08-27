@@ -27,26 +27,26 @@ jobs:
             - name: Setup Hugo
               uses: peaceiris/actions-hugo@v2
               with:
-                  hugo-version: "0.101.0"
+                  hugo-version: '0.101.0'
 
             # https://github.com/actions/setup-node
             - name: Setup Node
               uses: actions/setup-node@v3
               with:
-                  node-version: "18.7.0"
-                  cache: "npm"
+                  node-version: '18.7.0'
+                  cache: npm
                   # The action defaults to search for the dependency file (package-lock.json,
                   # npm-shrinkwrap.json or yarn.lock) in the repository root, and uses its
                   # hash as a part of the cache key.
                   # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-data
-                  cache-dependency-path: "./blog/package-lock.json"
+                  cache-dependency-path: ./blog/package-lock.json
 
             - name: Install npm dependencies
-              working-directory: "./blog/"
+              working-directory: ./blog/
               run: npm ci
 
             - name: Build
-              working-directory: "./blog/"
+              working-directory: ./blog/
               run: npm run build
 
             # https://github.com/peaceiris/actions-gh-pages
@@ -55,4 +55,4 @@ jobs:
               if: ${{ github.ref == 'refs/heads/main' }}
               with:
                   github_token: ${{ secrets.GITHUB_TOKEN }}
-                  publish_dir: "./blog/src/public"
+                  publish_dir: ./blog/src/public

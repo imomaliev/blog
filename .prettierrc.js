@@ -6,6 +6,7 @@ module.exports = {
       options: {
         tabWidth: 4,
         printWidth: 88,
+        singleQuote: true,
       },
     },
     {
