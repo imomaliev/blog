@@ -5,6 +5,8 @@ draft: false
 tags: ["hugo", "tailwindcss", "pre-commit", "prettier"]
 ---
 
+> _If you're going to do something, do it with style!_[^1]
+
 ## Where are my styles?
 
 We've just installed TailwindCSS to our project and ready to start adding styles to make it look better, but for some reason it now looks worse than before we installed it.
@@ -133,3 +135,5 @@ For some reason, `@tailwindcss/typography`'s classes not sorted. I tried differe
 -   https://github.com/tailwindlabs/prettier-plugin-tailwindcss
 -   https://tailwindcss.com/docs/typography-plugin
 -   https://github.com/tailwindlabs/tailwindcss/discussions/8921
+
+[^1]: [Quote by Jason Statham](https://www.brainyquote.com/quotes/jason_statham_760998)

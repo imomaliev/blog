@@ -5,6 +5,8 @@ draft: false
 tags: ["hugo", "blog", "terraform", "pre-commit", "editorconfig"]
 ---
 
+> _Build the plane while you’re flying it_[^1]
+
 ## New beginnings
 
 In the February 2022 I finally decided to create my personal blog. I've chosen the [`Hugo`](https://gohugo.io) as a framework for building it. On the landing page, it bravely declares:
@@ -16,10 +18,11 @@ and after using it, I can confidently say it really lives up to what it promises
 
 ## Building the plane while flying it
 
-I will start from the very beginning and create this blog from the scratch. This series is called "Building the blog while flying it". In the spirit of famous startup quote/approach, "Building the plane while flying it"[^1]. I think I will have a lot of fun. I am going to start by posting to my [`dev.to`](https://dev.to/imomaliev) page and host [blog repository](https://github.com/imomaliev/blog) on the GitHub. My first version of this blog is living in the [`blog-v1`](https://github.com/imomaliev/blog-v1) repo.
+I will start from the very beginning and create this blog from the scratch. This series is called "Building the blog while flying it". In the spirit of famous startup quote/approach, "Building the plane while flying it"[^2]. I think I will have a lot of fun. I am going to start by posting to my [`dev.to`](https://dev.to/imomaliev) page and host [blog repository](https://github.com/imomaliev/blog) on the GitHub. My first version of this blog is living in the [`blog-v1`](https://github.com/imomaliev/blog-v1) repo.
 
 [^1]:
-    https://www.youtube.com/watch?v=L2zqTYgcpfg
     https://www.csmonitor.com/The-Culture/The-Home-Forum/2016/0324/Build-the-plane-while-you-re-flying-it
     https://aydencreative.com/the-art-of-building-the-plane-while-you-fly-it/
     https://thedisruptionlab.com/building-the-plane-while-flying/
+
+[^2]: https://www.youtube.com/watch?v=L2zqTYgcpfg
