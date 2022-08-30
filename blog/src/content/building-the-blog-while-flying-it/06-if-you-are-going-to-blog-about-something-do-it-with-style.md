@@ -12,7 +12,7 @@ tags: ["hugo", "tailwindcss", "pre-commit", "prettier"]
 We've just installed TailwindCSS to our project and ready to start adding styles to make it look better, but for some reason it now looks worse than before we installed it.
 | Before | After |
 | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| ![before](/building-the-blog-while-flying-it/06-if-you-are-going-to-blog-about-something-do-it-with-style/before.png) | ![after](/building-the-blog-while-flying-it/06-if-you-are-going-to-blog-about-something-do-it-with-style/after.png) |
+| ![before](./before.png) | ![after](./after.png) |
 
 The [Preflight configuration](https://tailwindcss.com/docs/preflight) is a culprit who "stole" our styles. I've dealt with it on one of my different series [Vite vue ts tailwind template](https://dev.to/imomaliev/vite-vue-ts-tailwind-template-convert-styles-to-tailwindcss-classes-and-configs-part-3-467c). I am going to quote docs here:
 
@@ -61,7 +61,7 @@ With that out of the way, let's start styling our blog, and to help us speed thi
          </article>
     ```
     right away we see improvements
-    ![typography-applied](/building-the-blog-while-flying-it/06-if-you-are-going-to-blog-about-something-do-it-with-style/typography-applied.png)
+    ![typography-applied](./typography-applied.png)
 1. We will take it one step further by centering content and adding breakpoint modifiers.
     ```diff
     diff --git a/blog/src/layouts/_default/single.html b/blog/src/layouts/_default/single.html
@@ -76,7 +76,7 @@ With that out of the way, let's start styling our blog, and to help us speed thi
              {{ .Content }}
          </article>
     ```
-    ![typography-final](/building-the-blog-while-flying-it/06-if-you-are-going-to-blog-about-something-do-it-with-style/typography-final.png)
+    ![typography-final](./typography-final.png)
     much better. You may have noted that I also added [`prose-table:table-fixed`](https://tailwindcss.com/docs/typography-plugin#element-modifiers) element modifier. This is to ensure that our tables in articles will be fixed size.
 
 ## Adding styles to headers

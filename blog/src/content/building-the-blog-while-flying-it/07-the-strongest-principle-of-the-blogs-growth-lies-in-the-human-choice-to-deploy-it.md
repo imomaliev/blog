@@ -122,7 +122,7 @@ index 401fd33..3ddf6dd 100644
 
 I thought that this change will be usefull for all Setup Hugo users so I've created [PR with these changes](https://github.com/peaceiris/actions-hugo/pull/602) to update action's example. PR was accepted right away
 
-![setup hugo PR](/building-the-blog-while-flying-it/07-the-strongest-principle-of-the-blogs-growth-lies-in-the-human-choice-to-deploy-it/setup-hugo-pr.png)
+![setup hugo PR](./setup-hugo-pr.png)
 
 so if you follow same steps as I did you will not have to do this manually 😎
 
@@ -245,10 +245,18 @@ index 401fd33..3ddf6dd 100644
 +                  publish_dir: ./blog/src/public
 ```
 
+## Deploy to Github Pages
+
+The workflow we created will create `gh-pages` branch in our repo. All that left to do is to update repository configuration to use this branch for [Github Pages](https://pages.github.com). By default Pages should pick up and deploy files from the `gh-pages` branch but due to `GITHUB_TOKEN` limitation we need to set Pages's branch manually. Read more in the [GitHub Pages Action's docs](https://github.com/peaceiris/actions-gh-pages#%EF%B8%8F-first-deployment-with-github_token).
+
+While I was trying tt
+
 ## Bugs
 
+### YAML multistring rendering
+
 While I was re-reading this article to find issues in my spelling. I noticed something wierd
-![chroma-bug](/building-the-blog-while-flying-it/07-the-strongest-principle-of-the-blogs-growth-lies-in-the-human-choice-to-deploy-it/chroma-bug.png)
+![chroma-bug](./chroma-bug.png)
 this is definatelly a bug. I started looking into it. At first I thought the issue is in Hugo itself, but after trying to [make minimal reproducible example](https://en.wikipedia.org/wiki/Minimal_reproducible_example) I was falling deeper and deeper in the rabbithole of dependencies. Turns out issue was 4 layers deep.
 
 [Hugo](https://github.com/gohugoio/hugo) -> [goldmark](https://github.com/yuin/goldmark) -> [goldmark-highlighting](https://github.com/yuin/goldmark-highlighting) -> [chroma](https://github.com/alecthomas/chroma)
@@ -261,6 +269,10 @@ key: |
 ```
 
 I may have tried to fix it, but I think it may take way to much time because I do not have any experience with Go. So I will leave this issue as is for now. Maybe in future it will be fun project to practice Go development.
+
+### baseURL causing images with leading `/` render incorrectly
+
+TBD https://github.com/gohugoio/hugo/issues/8078
 
 ## Links
 
@@ -282,6 +294,7 @@ I may have tried to fix it, but I think it may take way to much time because I d
 -   https://github.com/yuin/goldmark
 -   https://github.com/yuin/goldmark-highlighting
 -   https://github.com/alecthomas/chroma/issues/475
+-   https://pages.github.com
 
 [^1]: [Quote by George Eliot](https://www.brainyquote.com/quotes/george_eliot_382778)
 [^2]: [Please use ".yaml" when possible.](https://yaml.org/faq.html)
