@@ -15,7 +15,7 @@ My plan is to use my own domain name instead of provided one and also we will ne
 
 ### Workflow from example
 
-Documentation provides example workflow file that uses [Hugo setup](https://github.com/marketplace/actions/hugo-setup) action in the "Build Hugo With GitHub Action" section. It is ok to use it, but I will use combination of 2 examples from [Hugo setup's README](https://github.com/peaceiris/actions-hugo#%EF%B8%8F-create-your-workflow) because it has [example for projects using PostCSS](https://github.com/peaceiris/actions-hugo#%EF%B8%8F-workflow-for-autoprefixer-and-postcss-cli).
+Documentation provides example workflow file that uses [GitHub Actions for Hugo](https://github.com/marketplace/actions/hugo-setup) action in the "Build Hugo With GitHub Action" section. It is ok to use it, but I will use combination of 2 examples from [GitHub Actions for Hugo's README](https://github.com/peaceiris/actions-hugo#%EF%B8%8F-create-your-workflow) because it has [example for projects using PostCSS](https://github.com/peaceiris/actions-hugo#%EF%B8%8F-workflow-for-autoprefixer-and-postcss-cli).
 
 <!-- https://github.com/prettier/prettier/issues/7666 -->
 <!-- prettier-ignore -->
@@ -75,7 +75,7 @@ We will save it as `.github/workflows/gh-pages.yaml`. **NOTE:** I preffer using 
 
 ### Updating workflow for our project
 
-Example workflow file I copied from Hugo setup action wouldn't work for our project structure. Also I would like to add some improvements. Mainly
+Example workflow file I copied from GitHub Actions for Hugo action wouldn't work for our project structure. Also I would like to add some improvements. Mainly
 
 -   Add comments for the parts that I do not know or may be confusing in the future
 -   Add links to used custom actions' documentation
@@ -168,7 +168,7 @@ index 4a4876d..49334d7 100644
 
 #### Use Ubuntu 22.04
 
-You also may have noted that we are using ubuntu 22.04. On August 9 2022 this version become [generally available](https://github.blog/changelog/2022-08-09-github-actions-ubuntu-22-04-is-now-generally-available-on-github-hosted-runners/). At the start I've used `runs-on: ubuntu-22.04` only in this workflow to check that everything works ok. After that I pushed PR which adds support for this ubuntu version to Hugo Setup https://github.com/peaceiris/actions-hugo/pull/603 and GitHub Pages Action https://github.com/peaceiris/actions-gh-pages/pull/776
+You also may have noticed that we are using ubuntu 22.04. On August 9 2022 this version become [generally available](https://github.blog/changelog/2022-08-09-github-actions-ubuntu-22-04-is-now-generally-available-on-github-hosted-runners/). At the start I've used `runs-on: ubuntu-22.04` only in this workflow to check that everything works ok. After that I pushed PRs which add support for this ubuntu version to GitHub Actions for Hugo https://github.com/peaceiris/actions-hugo/pull/603 and GitHub Pages Action https://github.com/peaceiris/actions-gh-pages/pull/776
 
 #### Final diff of changes
 
@@ -252,14 +252,15 @@ While I was re-reading this article to find issues in my spelling. I noticed som
 this is definatelly a bug. I started looking into it. At first I thought the issue is in Hugo itself, but after trying to [make minimal reproducible example](https://en.wikipedia.org/wiki/Minimal_reproducible_example) I was falling deeper and deeper in the rabbithole of dependencies. Turns out issue was 4 layers deep.
 
 [Hugo](https://github.com/gohugoio/hugo) -> [goldmark](https://github.com/yuin/goldmark) -> [goldmark-highlighting](https://github.com/yuin/goldmark-highlighting) -> [chroma](https://github.com/alecthomas/chroma)
+
 And there is already a [bug report](https://github.com/alecthomas/chroma/issues/475)
 
 ```yaml
-multistringkey: |
-    test
-
-key: string
+key: |
+    value
 ```
+
+I may have tried to fix it, but I think it may take way to much time because I do not have any experience with Go. So I will leave this issue as is for now. Maybe in future it will be fun project to practice Go development.
 
 ## Links
 
@@ -281,7 +282,6 @@ key: string
 -   https://github.com/yuin/goldmark
 -   https://github.com/yuin/goldmark-highlighting
 -   https://github.com/alecthomas/chroma/issues/475
--
 
 [^1]: [Quote by George Eliot](https://www.brainyquote.com/quotes/george_eliot_382778)
 [^2]: [Please use ".yaml" when possible.](https://yaml.org/faq.html)
