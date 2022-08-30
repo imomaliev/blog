@@ -1,0 +1,188 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><link rel=icon type=image/svg+xml href=/favicon.svg><meta name=viewport content="width=device-width,initial-scale=1"><title>Blog</title><link rel=stylesheet href=/blog/css/main.css></head><body><div id=content><article class="prose prose-sm prose-table:table-fixed lg:prose-lg xl:prose-xl 2xl:prose-2xl mx-auto"><h1>The strongest principle of the blog's growth lies in the human choice to deploy it</h1><blockquote><p><em>The strongest principle of growth lies in the human choice</em><sup id=fnref:1><a href=#fn:1 class=footnote-ref role=doc-noteref>1</a></sup></p></blockquote><h2 id=build-hugo-with-github-action>Build Hugo With GitHub Action</h2><p>It is time to put our blog on the internet. <a href=https://github.com/imomaliev/blog>Source code</a> is stored on GitHub so hosting it on the <a href=https://pages.github.com>GitHub Pages</a> seems like easiest way to achive that. Good starting point will be just using <a href=https://gohugo.io/hosting-and-deployment/hosting-on-github>official Hugo docs</a>.</p><p>My plan is to use my own domain name instead of provided one and also we will need to configure our workflow to properly build TailwindCSS which is used in this project.</p><h3 id=workflow-from-example>Workflow from example</h3><p>Documentation provides example workflow file that uses <a href=https://github.com/marketplace/actions/hugo-setup>Hugo setup</a> action in the &ldquo;Build Hugo With GitHub Action&rdquo; section. It is ok to use it, but I will use combination of 2 examples from <a href=https://github.com/peaceiris/actions-hugo#%EF%B8%8F-create-your-workflow>Hugo setup&rsquo;s README</a> because it has <a href=https://github.com/peaceiris/actions-hugo#%EF%B8%8F-workflow-for-autoprefixer-and-postcss-cli>example for projects using PostCSS</a>.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>name</span>: <span style=color:#ae81ff>GitHub Pages</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>on</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>push</span>:
+</span></span><span style=display:flex><span>        <span style=color:#f92672>branches</span>:
+</span></span><span style=display:flex><span>            - <span style=color:#ae81ff>main</span> <span style=color:#75715e># Set a branch to deploy</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>pull_request</span>:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>jobs</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>deploy</span>:
+</span></span><span style=display:flex><span>        <span style=color:#f92672>runs-on</span>: <span style=color:#ae81ff>ubuntu-20.04</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>concurrency</span>:
+</span></span><span style=display:flex><span>            <span style=color:#f92672>group</span>: <span style=color:#ae81ff>${{ github.workflow }}-${{ github.ref }}</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>steps</span>:
+</span></span><span style=display:flex><span>            - <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>actions/checkout@v3</span>
+</span></span><span style=display:flex><span>              <span style=color:#f92672>with</span>:
+</span></span><span style=display:flex><span>                  <span style=color:#f92672>submodules</span>: <span style=color:#66d9ef>true</span> <span style=color:#75715e># Fetch Hugo themes (true OR recursive)</span>
+</span></span><span style=display:flex><span>                  <span style=color:#f92672>fetch-depth</span>: <span style=color:#ae81ff>0</span> <span style=color:#75715e># Fetch all history for .GitInfo and .Lastmod</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Setup Hugo</span>
+</span></span><span style=display:flex><span>              <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>peaceiris/actions-hugo@v2</span>
+</span></span><span style=display:flex><span>              <span style=color:#f92672>with</span>:
+</span></span><span style=display:flex><span>                  <span style=color:#f92672>hugo-version</span>: <span style=color:#e6db74>&#39;0.91.2&#39;</span>
+</span></span><span style=display:flex><span>                  <span style=color:#75715e># extended: true</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Setup Node</span>
+</span></span><span style=display:flex><span>              <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>actions/setup-node@v3</span>
+</span></span><span style=display:flex><span>              <span style=color:#f92672>with</span>:
+</span></span><span style=display:flex><span>                  <span style=color:#f92672>node-version</span>: <span style=color:#e6db74>&#39;14&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Cache dependencies</span>
+</span></span><span style=display:flex><span>              <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>actions/cache@v2</span>
+</span></span><span style=display:flex><span>              <span style=color:#f92672>with</span>:
+</span></span><span style=display:flex><span>                  <span style=color:#f92672>path</span>: <span style=color:#ae81ff>~/.npm</span>
+</span></span><span style=display:flex><span>                  <span style=color:#f92672>key</span>: <span style=color:#ae81ff>${{ runner.os }}-node-${{ hashFiles(&#39;**/package-lock.json&#39;) }}</span>
+</span></span><span style=display:flex><span>                  <span style=color:#f92672>restore-keys</span>: |<span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>                      </span>                      <span style=color:#ae81ff>${{ runner.os }}-node-</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            - <span style=color:#f92672>run</span>: <span style=color:#ae81ff>npm ci</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Build</span>
+</span></span><span style=display:flex><span>              <span style=color:#f92672>run</span>: <span style=color:#ae81ff>hugo --minify</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Deploy</span>
+</span></span><span style=display:flex><span>              <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>peaceiris/actions-gh-pages@v3</span>
+</span></span><span style=display:flex><span>              <span style=color:#f92672>if</span>: <span style=color:#ae81ff>${{ github.ref == &#39;refs/heads/main&#39; }}</span>
+</span></span><span style=display:flex><span>              <span style=color:#f92672>with</span>:
+</span></span><span style=display:flex><span>                  <span style=color:#f92672>github_token</span>: <span style=color:#ae81ff>${{ secrets.GITHUB_TOKEN }}</span>
+</span></span><span style=display:flex><span>                  <span style=color:#f92672>publish_dir</span>: <span style=color:#ae81ff>./public</span>
+</span></span></code></pre></div><p>We will save it as <code>.github/workflows/gh-pages.yaml</code>. <strong>NOTE:</strong> I preffer using <code>yaml</code> extension instead of <code>yml</code><sup id=fnref:2><a href=#fn:2 class=footnote-ref role=doc-noteref>2</a></sup></p><h3 id=updating-workflow-for-our-project>Updating workflow for our project</h3><p>Example workflow file I copied from Hugo setup action wouldn&rsquo;t work for our project structure. Also I would like to add some improvements. Mainly</p><ul><li>Add comments for the parts that I do not know or may be confusing in the future</li><li>Add links to used custom actions&rsquo; documentation</li><li>Update and freeze actions and packages versions. I decided to use the same versions that I am using locally.</li><li>Add <code>working-directory: ./blog</code> <a href=https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsrun>option</a> to jobs because actual blog source files not located in the root of the project, but in the <code>blog/</code> directory.</li><li>Remove unused parts of the workflow</li></ul><p>but some changes may not be so obvious so let&rsquo;s discussus them</p><h4 id=using-setup-node-actions-cache-option>Using setup-node action&rsquo;s cache option</h4><p>In the copied example npm caching is done via <a href=https://github.com/actions/cache><code>actions/cache@v2</code></a> action. But we can simplify our workflow by dropping this step and using <a href=https://github.com/actions/setup-node#caching-global-packages-data>built-in functionality for caching</a></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-diff data-lang=diff><span style=display:flex><span>diff --git a/.github/workflows/gh-pages.yaml b/.github/workflows/gh-pages.yaml
+</span></span><span style=display:flex><span>index 401fd33..3ddf6dd 100644
+</span></span><span style=display:flex><span><span style=color:#f92672>--- a/.github/workflows/gh-pages.yaml
+</span></span></span><span style=display:flex><span><span style=color:#f92672></span><span style=color:#a6e22e>+++ b/.github/workflows/gh-pages.yaml
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e></span><span style=color:#75715e>@@ -26,18 +26,17 @@ jobs:
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>                   hugo-version: &#39;0.91.2&#39;
+</span></span><span style=display:flex><span>                   # extended: true
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>+            # https://github.com/actions/setup-node
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e></span>             - name: Setup Node
+</span></span><span style=display:flex><span>               uses: actions/setup-node@v3
+</span></span><span style=display:flex><span>               with:
+</span></span><span style=display:flex><span><span style=color:#f92672>-                  node-version: &#39;14&#39;
+</span></span></span><span style=display:flex><span><span style=color:#f92672>-
+</span></span></span><span style=display:flex><span><span style=color:#f92672>-            - name: Cache dependencies
+</span></span></span><span style=display:flex><span><span style=color:#f92672>-              uses: actions/cache@v2
+</span></span></span><span style=display:flex><span><span style=color:#f92672>-              with:
+</span></span></span><span style=display:flex><span><span style=color:#f92672>-                  path: ~/.npm
+</span></span></span><span style=display:flex><span><span style=color:#f92672>-                  key: ${{ runner.os }}-node-${{ hashFiles(&#39;**/package-lock.json&#39;) }}
+</span></span></span><span style=display:flex><span><span style=color:#f92672>-                  restore-keys: |
+</span></span></span><span style=display:flex><span><span style=color:#f92672>-                      ${{ runner.os }}-node-
+</span></span></span><span style=display:flex><span><span style=color:#f92672></span><span style=color:#a6e22e>+                  node-version: &#39;18.7.0&#39;
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+                  cache: npm
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+                  # The action defaults to search for the dependency file (package-lock.json,
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+                  # npm-shrinkwrap.json or yarn.lock) in the repository root, and uses its
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+                  # hash as a part of the cache key.
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+                  # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-data
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+                  cache-dependency-path: ./blog/package-lock.json
+</span></span></span></code></pre></div><p>I thought that this change will be usefull for all Setup Hugo users so I&rsquo;ve created <a href=https://github.com/peaceiris/actions-hugo/pull/602>PR with these changes</a> to update action&rsquo;s example. PR was accepted right away</p><p><img src=/building-the-blog-while-flying-it/07-the-strongest-principle-of-the-blogs-growth-lies-in-the-human-choice-to-deploy-it/setup-hugo-pr.png alt="setup hugo PR"></p><p>so if you follow same steps as I did you will not have to do this manually 😎</p><h4 id=building-blog-in-node-environment>Building blog in node environment</h4><p>For some reason when build it normally via <code>hugo --minify</code> PostCSS does not pick up TailwindCSS&rsquo;s styles. I solve this by running <code>hugo server</code> and build via NPM</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-diff data-lang=diff><span style=display:flex><span>diff --git a/.github/workflows/gh-pages.yaml b/.github/workflows/gh-pages.yaml
+</span></span><span style=display:flex><span>index 401fd33..3ddf6dd 100644
+</span></span><span style=display:flex><span><span style=color:#f92672>--- a/.github/workflows/gh-pages.yaml
+</span></span></span><span style=display:flex><span><span style=color:#f92672></span><span style=color:#a6e22e>+++ b/.github/workflows/gh-pages.yaml
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e></span><span style=color:#75715e>@@ -39,10 +39,13 @@ jobs:
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>                   restore-keys: |
+</span></span><span style=display:flex><span>                       ${{ runner.os }}-node-
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>-            - run: npm ci
+</span></span></span><span style=display:flex><span><span style=color:#f92672></span><span style=color:#a6e22e>+            - name: Install npm dependencies
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+              working-directory: ./blog/
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+              run: npm ci
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e></span>
+</span></span><span style=display:flex><span>             - name: Build
+</span></span><span style=display:flex><span><span style=color:#f92672>-              run: hugo --minify
+</span></span></span><span style=display:flex><span><span style=color:#f92672></span><span style=color:#a6e22e>+              working-directory: ./blog/
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+              run: npm run build
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e></span>
+</span></span><span style=display:flex><span>             - name: Deploy
+</span></span><span style=display:flex><span>               uses: peaceiris/actions-gh-pages@v3
+</span></span><span style=display:flex><span>diff --git a/blog/package.json b/blog/package.json
+</span></span><span style=display:flex><span>index 4a4876d..49334d7 100644
+</span></span><span style=display:flex><span><span style=color:#f92672>--- a/blog/package.json
+</span></span></span><span style=display:flex><span><span style=color:#f92672></span><span style=color:#a6e22e>+++ b/blog/package.json
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e></span><span style=color:#75715e>@@ -1,6 +1,7 @@
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span> {
+</span></span><span style=display:flex><span>   &#34;scripts&#34;: {
+</span></span><span style=display:flex><span><span style=color:#f92672>-    &#34;start&#34;: &#34;hugo --source src server --baseURL http://localhost/&#34;
+</span></span></span><span style=display:flex><span><span style=color:#f92672></span><span style=color:#a6e22e>+    &#34;start&#34;: &#34;hugo --source src server --baseURL http://localhost/&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+    &#34;build&#34;: &#34;hugo --source src --minify&#34;
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e></span>   },
+</span></span><span style=display:flex><span>   &#34;devDependencies&#34;: {
+</span></span><span style=display:flex><span>     &#34;@tailwindcss/typography&#34;: &#34;^0.5.4&#34;,
+</span></span></code></pre></div><h4 id=use-ubuntu-2204>Use Ubuntu 22.04</h4><p>You also may have noted that we are using ubuntu 22.04. On August 9 2022 this version become <a href=https://github.blog/changelog/2022-08-09-github-actions-ubuntu-22-04-is-now-generally-available-on-github-hosted-runners/>generally available</a>. At the start I&rsquo;ve used <code>runs-on: ubuntu-22.04</code> only in this workflow to check that everything works ok. After that I pushed PR which adds support for this ubuntu version to Hugo Setup <a href=https://github.com/peaceiris/actions-hugo/pull/603>https://github.com/peaceiris/actions-hugo/pull/603</a> and GitHub Pages Action <a href=https://github.com/peaceiris/actions-gh-pages/pull/776>https://github.com/peaceiris/actions-gh-pages/pull/776</a></p><h4 id=final-diff-of-changes>Final diff of changes</h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-diff data-lang=diff><span style=display:flex><span>diff --git a/.github/workflows/gh-pages.yaml b/.github/workflows/gh-pages.yaml
+</span></span><span style=display:flex><span>index 401fd33..3ddf6dd 100644
+</span></span><span style=display:flex><span><span style=color:#f92672>--- a/.github/workflows/gh-pages.yaml
+</span></span></span><span style=display:flex><span><span style=color:#f92672></span><span style=color:#a6e22e>+++ b/.github/workflows/gh-pages.yaml
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e></span><span style=color:#75715e>@@ -11,42 +11,48 @@ on:
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span> jobs:
+</span></span><span style=display:flex><span>     deploy:
+</span></span><span style=display:flex><span><span style=color:#f92672>-        runs-on: ubuntu-20.04
+</span></span></span><span style=display:flex><span><span style=color:#f92672></span><span style=color:#a6e22e>+        runs-on: ubuntu-22.04
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+        # Ensure that only a single job or workflow
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+        # https://docs.github.com/en/actions/using-jobs/using-concurrency
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e></span>         concurrency:
+</span></span><span style=display:flex><span><span style=color:#a6e22e>+            # workflow - The name of the workflow.
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+            # ref - The branch or tag ref that triggered the workflow run.
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e></span>             group: ${{ github.workflow }}-${{ github.ref }}
+</span></span><span style=display:flex><span>         steps:
+</span></span><span style=display:flex><span>             - uses: actions/checkout@v3
+</span></span><span style=display:flex><span>               with:
+</span></span><span style=display:flex><span><span style=color:#f92672>-                  submodules: true # Fetch Hugo themes (true OR recursive)
+</span></span></span><span style=display:flex><span><span style=color:#f92672></span>                   fetch-depth: 0 # Fetch all history for .GitInfo and .Lastmod
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>+            # https://github.com/peaceiris/actions-hugo
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e></span>             - name: Setup Hugo
+</span></span><span style=display:flex><span>               uses: peaceiris/actions-hugo@v2
+</span></span><span style=display:flex><span>               with:
+</span></span><span style=display:flex><span><span style=color:#f92672>-                  hugo-version: &#39;0.91.2&#39;
+</span></span></span><span style=display:flex><span><span style=color:#f92672>-                  # extended: true
+</span></span></span><span style=display:flex><span><span style=color:#f92672></span><span style=color:#a6e22e>+                  hugo-version: &#39;0.101.0&#39;
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e></span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>+            # https://github.com/actions/setup-node
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e></span>             - name: Setup Node
+</span></span><span style=display:flex><span>               uses: actions/setup-node@v3
+</span></span><span style=display:flex><span>               with:
+</span></span><span style=display:flex><span><span style=color:#f92672>-                  node-version: &#39;14&#39;
+</span></span></span><span style=display:flex><span><span style=color:#f92672>-
+</span></span></span><span style=display:flex><span><span style=color:#f92672>-            - name: Cache dependencies
+</span></span></span><span style=display:flex><span><span style=color:#f92672>-              uses: actions/cache@v2
+</span></span></span><span style=display:flex><span><span style=color:#f92672>-              with:
+</span></span></span><span style=display:flex><span><span style=color:#f92672>-                  path: ~/.npm
+</span></span></span><span style=display:flex><span><span style=color:#f92672>-                  key: ${{ runner.os }}-node-${{ hashFiles(&#39;**/package-lock.json&#39;) }}
+</span></span></span><span style=display:flex><span><span style=color:#f92672>-                  restore-keys: |
+</span></span></span><span style=display:flex><span><span style=color:#f92672>-                      ${{ runner.os }}-node-
+</span></span></span><span style=display:flex><span><span style=color:#f92672>-
+</span></span></span><span style=display:flex><span><span style=color:#f92672>-            - run: npm ci
+</span></span></span><span style=display:flex><span><span style=color:#f92672></span><span style=color:#a6e22e>+                  node-version: &#39;18.7.0&#39;
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+                  cache: npm
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+                  # The action defaults to search for the dependency file (package-lock.json,
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+                  # npm-shrinkwrap.json or yarn.lock) in the repository root, and uses its
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+                  # hash as a part of the cache key.
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+                  # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-data
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+                  cache-dependency-path: ./blog/package-lock.json
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+            - name: Install npm dependencies
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+              working-directory: ./blog/
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+              run: npm ci
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e></span>
+</span></span><span style=display:flex><span>             - name: Build
+</span></span><span style=display:flex><span><span style=color:#f92672>-              run: hugo --minify
+</span></span></span><span style=display:flex><span><span style=color:#f92672></span><span style=color:#a6e22e>+              working-directory: ./blog/
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+              run: npm run build
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e></span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>+            # https://github.com/peaceiris/actions-gh-pages
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e></span>             - name: Deploy
+</span></span><span style=display:flex><span>               uses: peaceiris/actions-gh-pages@v3
+</span></span><span style=display:flex><span>               if: ${{ github.ref == &#39;refs/heads/main&#39; }}
+</span></span><span style=display:flex><span>               with:
+</span></span><span style=display:flex><span>                   github_token: ${{ secrets.GITHUB_TOKEN }}
+</span></span><span style=display:flex><span><span style=color:#f92672>-                  publish_dir: ./public
+</span></span></span><span style=display:flex><span><span style=color:#f92672></span><span style=color:#a6e22e>+                  publish_dir: ./blog/src/public
+</span></span></span></code></pre></div><h2 id=bugs>Bugs</h2><p>While I was re-reading this article to find issues in my spelling. I noticed something wierd
+<img src=/building-the-blog-while-flying-it/07-the-strongest-principle-of-the-blogs-growth-lies-in-the-human-choice-to-deploy-it/chroma-bug.png alt=chroma-bug>
+this is definatelly a bug. I started looking into it. At first I thought the issue is in Hugo itself, but after trying to <a href=https://en.wikipedia.org/wiki/Minimal_reproducible_example>make minimal reproducible example</a> I was falling deeper and deeper in the rabbithole of dependencies. Turns out issue was 4 layers deep.</p><p><a href=https://github.com/gohugoio/hugo>Hugo</a> -> <a href=https://github.com/yuin/goldmark>goldmark</a> -> <a href=https://github.com/yuin/goldmark-highlighting>goldmark-highlighting</a> -> <a href=https://github.com/alecthomas/chroma>chroma</a>
+And there is already a <a href=https://github.com/alecthomas/chroma/issues/475>bug report</a></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>multistringkey</span>: |<span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    </span>    <span style=color:#ae81ff>test</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>key</span>: <span style=color:#ae81ff>string</span>
+</span></span></code></pre></div><h2 id=links>Links</h2><ul><li><a href=https://github.com/imomaliev/blog>https://github.com/imomaliev/blog</a></li><li><a href=https://gohugo.io/hosting-and-deployment/hosting-on-github/>https://gohugo.io/hosting-and-deployment/hosting-on-github/</a></li><li><a href=https://pages.github.com>https://pages.github.com</a></li><li><a href=https://github.com/marketplace/actions/hugo-setup>https://github.com/marketplace/actions/hugo-setup</a></li><li><a href=https://github.com/peaceiris/actions-hugo#%EF%B8%8F-create-your-workflow>https://github.com/peaceiris/actions-hugo#%EF%B8%8F-create-your-workflow</a></li><li><a href=https://github.com/peaceiris/actions-hugo#%EF%B8%8F-workflow-for-autoprefixer-and-postcss-cli>https://github.com/peaceiris/actions-hugo#%EF%B8%8F-workflow-for-autoprefixer-and-postcss-cli</a></li><li><a href=https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsrun>https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsrun</a></li><li><a href=https://github.com/actions/cache>https://github.com/actions/cache</a></li><li><a href=https://github.com/actions/setup-node#caching-global-packages-data>https://github.com/actions/setup-node#caching-global-packages-data</a></li><li><a href=https://github.com/peaceiris/actions-hugo/pull/602>https://github.com/peaceiris/actions-hugo/pull/602</a></li><li><a href=https://github.blog/changelog/2022-08-09-github-actions-ubuntu-22-04-is-now-generally-available-on-github-hosted-runners/>https://github.blog/changelog/2022-08-09-github-actions-ubuntu-22-04-is-now-generally-available-on-github-hosted-runners/</a></li><li><a href=https://github.com/peaceiris/actions-hugo/pull/603>https://github.com/peaceiris/actions-hugo/pull/603</a></li><li><a href=https://github.com/peaceiris/actions-gh-pages/pull/776>https://github.com/peaceiris/actions-gh-pages/pull/776</a></li><li><a href=https://en.wikipedia.org/wiki/Minimal_reproducible_example>https://en.wikipedia.org/wiki/Minimal_reproducible_example</a></li><li><a href=https://github.com/gohugoio/hugo>https://github.com/gohugoio/hugo</a></li><li><a href=https://github.com/yuin/goldmark>https://github.com/yuin/goldmark</a></li><li><a href=https://github.com/yuin/goldmark-highlighting>https://github.com/yuin/goldmark-highlighting</a></li><li><a href=https://github.com/alecthomas/chroma/issues/475>https://github.com/alecthomas/chroma/issues/475</a></li><li></li></ul><div class=footnotes role=doc-endnotes><hr><ol><li id=fn:1><p><a href=https://www.brainyquote.com/quotes/george_eliot_382778>Quote by George Eliot</a>&#160;<a href=#fnref:1 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:2><p><a href=https://yaml.org/faq.html>Please use &ldquo;.yaml&rdquo; when possible.</a>&#160;<a href=#fnref:2 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li></ol></div></article></div></body></html>

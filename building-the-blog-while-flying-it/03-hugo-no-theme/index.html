@@ -1,0 +1,51 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><link rel=icon type=image/svg+xml href=/favicon.svg><meta name=viewport content="width=device-width,initial-scale=1"><title>Blog</title><link rel=stylesheet href=/blog/css/main.css></head><body><div id=content><article class="prose prose-sm prose-table:table-fixed lg:prose-lg xl:prose-xl 2xl:prose-2xl mx-auto"><h1>Hugo no theme</h1><h2 id=using-hugo-without-theme>Using Hugo without theme</h2><p>In <a href=https://gohugo.io/getting-started/quick-start/>quick start</a> guide and many online tutorials, new projects are advised to use one of the existing themes or create a new one. But after reading official docs, I&rsquo;ve decided not to use any theme in my <a href=https://github.com/imomaliev/blog-v1>previous blog version</a>. I am going to do the same for this new project. If in the future some of my functionality will look like it could be decoupled from the blog, I will create a theme but for now, I do not see any need for one.</p><h2 id=how-to-start-hugo-project-without-a-theme>How to start Hugo project without a theme</h2><p>It is actually pretty easy. First, you need to understand how hugo <a href=https://gohugo.io/getting-started/directory-structure/>project structure</a> works. Basically, hugo will look for needed files in the root folder and if it can&rsquo;t find them, it will try to look them up in the theme folder. Most of the themes provide us with <code>archetypes</code>, <code>assets</code>, <code>layouts</code> and <code>static</code> folders. For example, If we create a new theme with <code>hugo new theme</code> we will get this directory structure.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console><span style=display:flex><span>themes/theme
+</span></span><span style=display:flex><span>├── LICENSE
+</span></span><span style=display:flex><span>├── archetypes
+</span></span><span style=display:flex><span>│   └── default.md
+</span></span><span style=display:flex><span>├── layouts
+</span></span><span style=display:flex><span>│   ├── 404.html
+</span></span><span style=display:flex><span>│   ├── _default
+</span></span><span style=display:flex><span>│   │   ├── baseof.html
+</span></span><span style=display:flex><span>│   │   ├── list.html
+</span></span><span style=display:flex><span>│   │   └── single.html
+</span></span><span style=display:flex><span>│   ├── index.html
+</span></span><span style=display:flex><span>│   └── partials
+</span></span><span style=display:flex><span>│       ├── footer.html
+</span></span><span style=display:flex><span>│       ├── head.html
+</span></span><span style=display:flex><span>│       └── header.html
+</span></span><span style=display:flex><span>├── static
+</span></span><span style=display:flex><span>│   ├── css
+</span></span><span style=display:flex><span>│   └── js
+</span></span><span style=display:flex><span>└── theme.toml
+</span></span></code></pre></div><p>As you can see it, most of the files created by cli are in <code>layouts</code> folder, so we just can copy it to our root. This will provide use with basic scaffold for our project.</p><h2 id=configure-pre-commit-and-editorconfig-to-format-hugo-templates>Configure pre-commit and editorconfig to format hugo templates</h2><p>If you&rsquo;ve read previous blog posts in this series, you may have noticed that I use <code>pre-commit</code> and <code>editorconfig</code> to ensure that all files in the project are validated and autoformated. To add support for <code>gohtml</code> file type, we are going to use <a href=https://www.npmjs.com/package/prettier-plugin-go-template><code>prettier-plugin-go-template</code></a>.</p><p>Configure <code>pre-commit</code>by adding this plugin to <code>additional_dependencies</code>.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-diff data-lang=diff><span style=display:flex><span>diff --git a/.pre-commit-config.yaml b/.pre-commit-config.yaml
+</span></span><span style=display:flex><span>index ca47c31..3e5cfef 100644
+</span></span><span style=display:flex><span><span style=color:#f92672>--- a/.pre-commit-config.yaml
+</span></span></span><span style=display:flex><span><span style=color:#f92672></span><span style=color:#a6e22e>+++ b/.pre-commit-config.yaml
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e></span><span style=color:#75715e>@@ -22,7 +22,10 @@ repos:
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>       rev: v2.7.1
+</span></span><span style=display:flex><span>       hooks:
+</span></span><span style=display:flex><span>           - id: prettier
+</span></span><span style=display:flex><span><span style=color:#f92672>-            types_or: [yaml, markdown, json]
+</span></span></span><span style=display:flex><span><span style=color:#f92672></span><span style=color:#a6e22e>+            types_or: [yaml, markdown, json, html]
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+            additional_dependencies:
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+                - &#34;prettier@2.7.1&#34;
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+                - &#34;prettier-plugin-go-template@0.0.13&#34;
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e></span>     - repo: https://github.com/antonbabenko/pre-commit-terraform
+</span></span><span style=display:flex><span>       rev: v1.74.1
+</span></span><span style=display:flex><span>       hooks:
+</span></span></code></pre></div><p>note, we also need to add <code>prettier</code> itself too because usually JavaScript hooks use <code>additional_dependencies</code> to install libraries that hook uses, here is <a href=https://github.com/pre-commit/mirrors-prettier/blob/main/.pre-commit-hooks.yaml>example</a></p><p>And after that update <code>.prettierrc.yaml</code> following instructions from official README</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-diff data-lang=diff><span style=display:flex><span>diff --git a/.prettierrc.yaml b/.prettierrc.yaml
+</span></span><span style=display:flex><span>index f96ee19..22fe08f 100644
+</span></span><span style=display:flex><span><span style=color:#f92672>--- a/.prettierrc.yaml
+</span></span></span><span style=display:flex><span><span style=color:#f92672></span><span style=color:#a6e22e>+++ b/.prettierrc.yaml
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e></span><span style=color:#75715e>@@ -11,3 +11,10 @@ overrides:
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>           - &#34;*.md&#34;
+</span></span><span style=display:flex><span>       options:
+</span></span><span style=display:flex><span>           tabWidth: 4
+</span></span><span style=display:flex><span><span style=color:#a6e22e>+    # https://github.com/NiklasPor/prettier-plugin-go-template
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+    - files:
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+          - &#34;blog/src/layouts/**/*.html&#34;
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+      options:
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+          parser: go-template
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+          tabWidth: 4
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>+          printWidth: 88
+</span></span></span></code></pre></div><p>Finally, we are going to add <code>html</code> to <code>.editorconfig</code>. And we are done.</p><h2 id=extra>Extra</h2><p>There is also another <code>gohtml</code> file type formatter, you can find it here <a href=https://github.com/Riverside-Healthcare/djlint>https://github.com/Riverside-Healthcare/djlint</a>.</p></article></div></body></html>
