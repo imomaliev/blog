@@ -9,13 +9,13 @@ tags: ["hugo", "terraform", "github-actions", "github-pages"]
 
 ## Build Hugo With GitHub Action
 
-It is time to put our blog on the internet. [Source code](https://github.com/imomaliev/blog) is stored on GitHub so hosting it on the [GitHub Pages](https://pages.github.com) seems like easiest way to achive that. Good starting point will be just using [official Hugo docs](https://gohugo.io/hosting-and-deployment/hosting-on-github).
+It is time to put our blog on the internet. [Source code](https://github.com/imomaliev/blog) is stored on GitHub, so hosting it on the [GitHub Pages](https://pages.github.com) seems like the easiest way to achieve that. A good starting point will be just using [official Hugo docs](https://gohugo.io/hosting-and-deployment/hosting-on-github).
 
-My plan is to use my own domain name instead of provided one and also we will need to configure our workflow to properly build TailwindCSS which is used in this project.
+We will need to configure our workflow to properly build TailwindCSS which is used in this project, and also I would like to use my own domain name instead of provided one.
 
 ### Workflow from example
 
-Documentation provides example workflow file that uses [GitHub Actions for Hugo](https://github.com/marketplace/actions/hugo-setup) action in the "Build Hugo With GitHub Action" section. It is ok to use it, but I will use combination of 2 examples from [GitHub Actions for Hugo's README](https://github.com/peaceiris/actions-hugo#%EF%B8%8F-create-your-workflow) because it has [example for projects using PostCSS](https://github.com/peaceiris/actions-hugo#%EF%B8%8F-workflow-for-autoprefixer-and-postcss-cli).
+Documentation provides an example workflow file that uses [GitHub Actions for Hugo](https://github.com/marketplace/actions/hugo-setup) action in the "Build Hugo With GitHub Action" section. It is ok to use it, but I will use combination of 2 examples ([1](https://github.com/peaceiris/actions-hugo#%EF%B8%8F-create-your-workflow), [2](https://github.com/peaceiris/actions-hugo#%EF%B8%8F-workflow-for-autoprefixer-and-postcss-cli)) from GitHub Actions for Hugo's README because it has one for projects using PostCSS.
 
 <!-- https://github.com/prettier/prettier/issues/7666 -->
 <!-- prettier-ignore -->
@@ -71,23 +71,23 @@ jobs:
                   publish_dir: ./public
 ```
 
-We will save it as `.github/workflows/gh-pages.yaml`. **NOTE:** I preffer using `yaml` extension instead of `yml`[^2]
+We will save it as `.github/workflows/gh-pages.yaml`. **NOTE:** I prefer using `yaml` extension instead of `yml`[^2]
 
-### Updating workflow for our project
+### Updating workflow to make it work in our project
 
-Example workflow file I copied from GitHub Actions for Hugo action wouldn't work for our project structure. Also I would like to add some improvements. Mainly
+The workflow file I copied from GitHub Actions for Hugo action wouldn't work for our project structure. Additionally, I would like to make some improvements. Mainly
 
--   Add comments for the parts that I do not know or may be confusing in the future
--   Add links to used custom actions' documentation
--   Update and freeze actions and packages versions. I decided to use the same versions that I am using locally.
+-   Add comments for the parts that are new to me or may be confusing in the future
+-   Add links to documentation for used actions
+-   Update and freeze actions' and packages' versions. I decided to use the same versions that I am using locally.
 -   Add `working-directory: ./blog` [option](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsrun) to jobs because actual blog source files not located in the root of the project, but in the `blog/` directory.
 -   Remove unused parts of the workflow
 
-but some changes may not be so obvious so let's discussus them
+but some changes may not be so obvious, so let's discuss them
 
 #### Using setup-node action's cache option
 
-In the copied example npm caching is done via [`actions/cache@v2`](https://github.com/actions/cache) action. But we can simplify our workflow by dropping this step and using [built-in functionality for caching](https://github.com/actions/setup-node#caching-global-packages-data)
+In the copied example, npm caching is done via [`actions/cache@v2`](https://github.com/actions/cache) action. But we can simplify our workflow by dropping this step and using [built-in functionality for caching](https://github.com/actions/setup-node#caching-global-packages-data)
 
 ```diff
 diff --git a/.github/workflows/gh-pages.yaml b/.github/workflows/gh-pages.yaml
@@ -120,15 +120,15 @@ index 401fd33..3ddf6dd 100644
 +                  cache-dependency-path: ./blog/package-lock.json
 ```
 
-I thought that this change will be usefull for all Setup Hugo users so I've created [PR with these changes](https://github.com/peaceiris/actions-hugo/pull/602) to update action's example. PR was accepted right away
+I thought that this change will be useful for all "Setup Hugo" users, so I've created [PR with these changes](https://github.com/peaceiris/actions-hugo/pull/602) to update action's example. PR was accepted right away.
 
 ![setup hugo PR](./setup-hugo-pr.png)
 
-so if you follow same steps as I did you will not have to do this manually 😎
+so if you follow the same steps as I did, you will not have to do this manually 😎.
 
 #### Building blog in node environment
 
-For some reason when build it normally via `hugo --minify` PostCSS does not pick up TailwindCSS's styles. I solve this by running `hugo server` and build via NPM
+For some reason, when the blog built normally via `hugo --minify` PostCSS does not pick up TailwindCSS's styles. I solve this by running `hugo server` and build from NPM's environment via custom `npm run build` script.
 
 ```diff
 diff --git a/.github/workflows/gh-pages.yaml b/.github/workflows/gh-pages.yaml
@@ -168,7 +168,9 @@ index 4a4876d..49334d7 100644
 
 #### Use Ubuntu 22.04
 
-You also may have noticed that we are using ubuntu 22.04. On August 9 2022 this version become [generally available](https://github.blog/changelog/2022-08-09-github-actions-ubuntu-22-04-is-now-generally-available-on-github-hosted-runners/). At the start I've used `runs-on: ubuntu-22.04` only in this workflow to check that everything works ok. After that I pushed PRs which add support for this ubuntu version to GitHub Actions for Hugo https://github.com/peaceiris/actions-hugo/pull/603 and GitHub Pages Action https://github.com/peaceiris/actions-gh-pages/pull/776
+You also may have noticed that we are using Ubuntu 22.04. On August 9, 2022 this version become [generally available](https://github.blog/changelog/2022-08-09-github-actions-ubuntu-22-04-is-now-generally-available-on-github-hosted-runners/).
+
+I started by using `runs-on: ubuntu-22.04` in this workflow to check if everything works ok. It run without any issues. After that I created PRs to add support for `ubuntu-22.04` and `ubuntu-latest` version to [GitHub Actions for Hugo](https://github.com/peaceiris/actions-hugo/pull/603) and [GitHub Pages Action](https://github.com/peaceiris/actions-gh-pages/pull/776)
 
 #### Final diff of changes
 
@@ -245,19 +247,21 @@ index 401fd33..3ddf6dd 100644
 +                  publish_dir: ./blog/src/public
 ```
 
-## Deploy to Github Pages
+## Deploy to GitHub Pages
 
-The workflow we created will create `gh-pages` branch in our repo. All that left to do is to update repository configuration to use this branch for [Github Pages](https://pages.github.com). By default Pages should pick up and deploy files from the `gh-pages` branch but due to `GITHUB_TOKEN` limitation we need to set Pages's branch manually. Read more in the [GitHub Pages Action's docs](https://github.com/peaceiris/actions-gh-pages#%EF%B8%8F-first-deployment-with-github_token).
+The workflow we added will create `gh-pages` branch in our repo automatically after the first run. All that left to do is to update repository configuration to use this branch for [GitHub Pages](https://pages.github.com). By default, Pages should pick up and deploy files from the `gh-pages` branch, but due to `GITHUB_TOKEN` limitation we need to set Pages's branch manually. Read more in the [GitHub Pages Action's docs](https://github.com/peaceiris/actions-gh-pages#%EF%B8%8F-first-deployment-with-github_token).
 
-While I was trying tt
+I wanted to configure GitHub Pages using terraform because this project already uses it to configure this repository. But currently, due to how GitHub provider for terraform is written, configuring Pages [requires some fiddling](https://github.com/integrations/terraform-provider-github/issues/782) and will not work on the first run. During my research into how I could achieve declarative configuration for Pages, I found out that [GitHub recently added](https://github.blog/changelog/2022-07-27-github-pages-custom-github-actions-workflows-beta/) actions that allow deploying to Pages without additional branch. I like this [new approach](https://github.com/actions/starter-workflows/blob/main/pages/hugo.yml) better and in the future I will switch to it, but for now I decided to configure Pages manually as suggested by GitHub Pages Action that we are using.
 
 ## Bugs
 
+There are few bugs that I stumbled upon while applying these changes to my blog and writing about them
+
 ### YAML multistring rendering
 
-While I was re-reading this article to find issues in my spelling. I noticed something wierd
+While I was re-reading this article to find issues in my spelling. I noticed something weird
 ![chroma-bug](./chroma-bug.png)
-this is definatelly a bug. I started looking into it. At first I thought the issue is in Hugo itself, but after trying to [make minimal reproducible example](https://en.wikipedia.org/wiki/Minimal_reproducible_example) I was falling deeper and deeper in the rabbithole of dependencies. Turns out issue was 4 layers deep.
+this is definitely a bug. I started looking into it. At first, I thought the issue is in Hugo itself, but after trying to [make minimal reproducible example](https://en.wikipedia.org/wiki/Minimal_reproducible_example) I was falling deeper and deeper in the rabbithole of dependencies. Turns out the issue was 4 layers deep.
 
 [Hugo](https://github.com/gohugoio/hugo) -> [goldmark](https://github.com/yuin/goldmark) -> [goldmark-highlighting](https://github.com/yuin/goldmark-highlighting) -> [chroma](https://github.com/alecthomas/chroma)
 
@@ -268,11 +272,22 @@ key: |
     value
 ```
 
-I may have tried to fix it, but I think it may take way to much time because I do not have any experience with Go. So I will leave this issue as is for now. Maybe in future it will be fun project to practice Go development.
+I may have tried to fix it, but I think it may take way too much time because I do not have any experience with Go. So, I will leave this issue as is for now. Maybe in the future it will be a fun project to practice Go development.
 
 ### baseURL causing images with leading `/` render incorrectly
 
-TBD https://github.com/gohugoio/hugo/issues/8078
+I noticed that after deployment images were broken after further research it became clear that this happens because we are using `baseURL` with path - https://imomaliev.github.io/blog/. This is [known behavior](https://github.com/gohugoio/hugo/issues/8078). It does look like a bug to me, but maintainers decided to close this issue as ["wontfix"](https://github.com/gohugoio/hugo/issues/8078#issuecomment-748561750) for now. In the future, I am planning to host this blog on my domain without additional path in `baseURL`, but for now I fixed it by using relative paths instead ones starting with leading `/`.
+
+```diff
+-![setup hugo PR](/building-the-blog-while-flying-it/07-the-strongest-principle-of-the-blogs-growth-lies-in-the-human-choice-to-deploy-it/setup-hugo-pr.png)
++![setup hugo PR](./setup-hugo-pr.png)
+```
+
+So, another future exercise for myself will be to bring this issue to proper resolution in Hugo itself.
+
+## No custom domain for now
+
+This article is already becoming pretty big, I think we will switch this blog to use custom domain in some other time. My plan is to do this via terraform as well, so stay tuned for this series.
 
 ## Links
 
@@ -295,6 +310,11 @@ TBD https://github.com/gohugoio/hugo/issues/8078
 -   https://github.com/yuin/goldmark-highlighting
 -   https://github.com/alecthomas/chroma/issues/475
 -   https://pages.github.com
+-   https://github.com/integrations/terraform-provider-github/issues/782
+-   https://github.blog/changelog/2022-07-27-github-pages-custom-github-actions-workflows-beta/
+-   https://github.com/actions/starter-workflows/blob/main/pages/hugo.yml
+-   https://github.com/gohugoio/hugo/issues/8078
+-   https://github.com/gohugoio/hugo/issues/8078#issuecomment-748561750
 
 [^1]: [Quote by George Eliot](https://www.brainyquote.com/quotes/george_eliot_382778)
 [^2]: [Please use ".yaml" when possible.](https://yaml.org/faq.html)
