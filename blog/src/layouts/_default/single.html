@@ -1,8 +1,10 @@
 {{ define "main" }}
     <article
-        class="prose prose-sm prose-table:table-fixed lg:prose-lg xl:prose-xl 2xl:prose-2xl mx-auto"
+        class="prose prose-sm prose-table:table-fixed lg:prose-lg xl:prose-xl 2xl:prose-2xl mx-auto pt-4"
     >
         <h1>{{ .Title }}</h1>
+        <p class="text-sm italic">{{ .Date | time.Format ":date_long" }}</p>
+        <img class="mx-auto" src="./cover.png" />
         {{ .Content }}
     </article>
 {{ end }}
