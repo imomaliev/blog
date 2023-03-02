@@ -259,13 +259,15 @@ There are few bugs that I stumbled upon while applying these changes to my blog 
 
 ### YAML multistring rendering
 
+> **Update** this was fixed in [v0.111.0](https://github.com/gohugoio/hugo/releases/tag/v0.111.0) release.
+
 While I was re-reading this article to find issues in my spelling. I noticed something weird
 ![chroma-bug](./chroma-bug.png)
 this is definitely a bug. I started looking into it. At first, I thought the issue is in Hugo itself, but after trying to [make minimal reproducible example](https://en.wikipedia.org/wiki/Minimal_reproducible_example) I was falling deeper and deeper in the rabbithole of dependencies. Turns out the issue was 4 layers deep.
 
 [Hugo](https://github.com/gohugoio/hugo) -> [goldmark](https://github.com/yuin/goldmark) -> [goldmark-highlighting](https://github.com/yuin/goldmark-highlighting) -> [chroma](https://github.com/alecthomas/chroma)
 
-And there is already a [bug report](https://github.com/alecthomas/chroma/issues/475)
+And there is already a [bug report](https://github.com/alecthomas/chroma/issues/475).
 
 ```yaml
 key: |
