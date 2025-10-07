@@ -1,4 +1,8 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://imomaliev.github.io/blog/'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
+title = 'Blog'
 theme = 'theme'
+
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
