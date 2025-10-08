@@ -19,3 +19,31 @@ $ touch .github/workflows/hugo.yaml
 cd site/
 ./site/public
 ```
+
+## Custom domain
+
+https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site
+
+Setup A and AAAA
+
+A vs CNAME?
+
+https://developers.cloudflare.com/dns/manage-dns-records/reference/dns-record-types/
+
+### Troubleshooting
+
+- If it did not work switch `Proxied` in Clouldlfare
+- Check if you have `Page Rules` enabled
+
+```console
+$ dig imomaliev.com +noall +answer -t A
+$ dig imomaliev.com +noall +answer -t AAAA
+```
+
+```console
+$ git commit -m 'setup custom domain'
+```
+
+## Verifying domain
+
+https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/verifying-your-custom-domain-for-github-pages
