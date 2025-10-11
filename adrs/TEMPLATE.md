@@ -1,12 +1,17 @@
+---
+# These documents have names that are short noun phrases.
+title: "TITLE"
+# ADR's number
+number: "NNNN"
+# Decision created date
+date: DATE
+# A decision **MAY** be "proposed" if the project stakeholders haven't decided on it yet, "accepted" once it is agreed, or "rejected" if not. If a later ADR changes or reverses a decision, it may be marked as "deprecated" or "superseded" with a reference to its replacement.
+status: proposed
+---
+
 # ADR NNNN: TITLE
 
 <!-- These documents have names that are short noun phrases. -->
-
-## Status
-
-<!-- A decision **MAY** be "proposed" if the project stakeholders haven't decided on it yet, "accepted" once it is agreed, or "rejected" if not. If a later ADR changes or reverses a decision, it may be marked as "deprecated" or "superseded" with a reference to its replacement. -->
-
-Proposed.
 
 ## Context
 
