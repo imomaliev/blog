@@ -1,4 +1,8 @@
-# Documenting Architectural Decisions
+# ADR 0001: Documenting Architectural Decisions
+
+## Status
+
+Accepted.
 
 ## Context
 
@@ -19,42 +23,51 @@ It's better to avoid either blind acceptance or blind reversal.
 
 ## Decision
 
-We will keep a collection of records for "architecturally significant" decisions: those that affect the structure, non-functional characteristics, dependencies, interfaces, or construction techniques.
+We will use [RFC 2119](https://www.rfc-editor.org/rfc/rfc2119) with updates from [RFC 8174](https://www.rfc-editor.org/rfc/rfc8174) to specify key words to indicate requirement levels. Specified key words **MUST** be written using strong emphasis.
 
-An architectural decision record is a short text file in a format similar to an Alexandrian pattern. (Though the decisions themselves are not necessarily patterns, they share the characteristic balancing of forces.) Each record describes a set of forces and a single decision in response to those forces. Note that the decision is the central piece here, so specific forces may appear in multiple ADRs.
+We **MUST** keep a collection of records for "architecturally significant" decisions: those that affect the structure, non-functional characteristics, dependencies, interfaces, or construction techniques.
 
-We will keep ADRs in the project repository under doc/arch/adr-NNN.md
+An architectural decision record **MUST** be a short text file in a format similar to an [Alexandrian pattern](https://www.martinfowler.com/articles/writingPatterns.html#AlexandrianForm). (Though the decisions themselves are not necessarily patterns, they share the characteristic balancing of forces.) Each record describes a set of forces and a single decision in response to those forces. Note that the decision is the central piece here, so specific forces may appear in multiple ADRs.
 
-We should use a lightweight text formatting language like Markdown or Textile.
+We **MUST** keep ADRs in the project repository under `adrs/NNNN-title.md`
 
-ADRs will be numbered sequentially and monotonically. Numbers will not be reused.
+We **MUST** use [CommonMark](https://commonmark.org/) dialect of the [Markdown](https://en.wikipedia.org/wiki/Markdown) for text formatting.
 
-If a decision is reversed, we will keep the old one around, but mark it as superseded. (It's still relevant to know that it _was_ the decision, but is _no longer_ the decision.)
+ADRs **MUST** be numbered sequentially and monotonically. Numbers **MUST** not be reused.
 
-We will use a format with just a few parts, so each document is easy to digest. The format has just a few parts.
+If a decision is reversed, we **MUST** keep the old one around, but mark it as _superseded_. (It's still relevant to know that it _was_ the decision, but is _no longer_ the decision.)
 
-**Title** These documents have names that are short noun phrases. For example, "ADR 1: Deployment on Ruby on Rails 3.0.10" or "ADR 9: LDAP for Multitenant Integration"
+We **MUST** use a format with just a few parts, so each document is easy to digest. The format has just a few parts.
+
+**Title** These documents have names that are short noun phrases. For example, "ADR 0002: Deployment on Ruby on Rails 3.0.10" or "ADR 0009: LDAP for Multitenant Integration"
+**Status** A decision may be "proposed" if the project stakeholders haven't agreed with it yet, or "accepted" once it is agreed. If a later ADR changes or reverses a decision, it may be marked as "deprecated" or "superseded" with a reference to its replacement.
 
 **Context** This section describes the forces at play, including technological, political, social, and project local. These forces are probably in tension, and should be called out as such. The language in this section is value-neutral. It is simply describing facts.
 
-**Decision** This section describes our response to these forces. It is stated in full sentences, with active voice. "We will …"
+**Decision** This section describes our response to these forces. It is stated in full sentences, with active voice. "We **MUST** …"
 
-**Status** A decision may be "proposed" if the project stakeholders haven't agreed with it yet, or "accepted" once it is agreed. If a later ADR changes or reverses a decision, it may be marked as "deprecated" or "superseded" with a reference to its replacement.
+**Alternatives** This section describes **considered** alternatives to the _decision_. Each _alternative_ **MUST** have a **Verdict** specifying the reason it was not choosen.
 
-**Consequences** This section describes the resulting context, after applying the decision. All consequences should be listed here, not just the "positive" ones. A particular decision may have positive, negative, and neutral consequences, but all of them affect the team and project in the future.
+**Consequences** This section describes the resulting context, after applying the _decision_. All consequences should be listed here, not just the "positive" ones. A particular decision may have positive, negative, and neutral consequences, but all of them affect the team and project in the future.
+
+**Resources** This section lists references, sources, or further reading recommendations, that were used to form the _decision_ or provide an additional context.
 
 The whole document should be one or two pages long. We will write each ADR as if it is a conversation with a future developer. This requires good writing style, with full sentences organized into paragraphs. Bullets are acceptable only for visual style, not as an excuse for writing sentence fragments. (Bullets kill people, even PowerPoint bullets.)
 
-## Status
+## Alternatives
 
-Accepted.
+TBD
 
 ## Consequences
 
 One ADR describes one significant decision for a specific project. It should be something that has an effect on how the rest of the project will run.
 
-The consequences of one ADR are very likely to become the context for subsequent ADRs. This is also similar to Alexander's idea of a pattern language: the large-scale responses create spaces for the smaller scale to fit into.
+The consequences of one ADR are very likely to become the context for subsequent ADRs. This is also similar to [Alexander's](https://en.wikipedia.org/wiki/Christopher_Alexander) idea of a pattern language: the large-scale responses create spaces for the smaller scale to fit into.
 
 Developers and project stakeholders can see the ADRs, even as the team composition changes over time.
 
 The motivation behind previous decisions is visible for everyone, present and future. Nobody is left scratching their heads to understand, "What were they thinking?" and the time to change old decisions will be clear from changes in the project's context.
+
+## Resources
+
+
