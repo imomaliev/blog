@@ -1,8 +1,8 @@
 ---
 title: "Use GitHub Pages for Site Hosting"
 number: "0006"
+status: "accepted"
 date: 2025-10-12T13:01:39+01:00
-status: accepted
 ---
 
 # ADR 0006: Use GitHub Pages for Site Hosting

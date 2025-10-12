@@ -1,7 +1,7 @@
 ---
 title: "Use Module for Hugo Theme"
 number: "0009"
-status: accepted
+status: "accepted"
 date: "2025-10-15T21:03:35+01:00"
 ---
 
