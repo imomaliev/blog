@@ -1,5 +1,10 @@
 {{- $pathParts := split .File.ContentBaseName "-" }}
+{{- $adrs := where .Site.RegularPages.ByTitle "Type" "adrs" }}
 {{- $number := index $pathParts 0 }}
+{{- $expected_number := printf "%04d" (add $adrs.Len 1) }}
+{{- if (ne $number $expected_number) }}
+    {{- errorf "Expected ADR number %s but got %s" $expected_number $number }}
+{{- end }}
 {{- $titleParts := $pathParts | after 1 }}
 {{- $title := delimit $titleParts " " | title -}}
 ---
