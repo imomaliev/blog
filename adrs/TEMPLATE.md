@@ -1,15 +1,19 @@
+{{- $pathParts := split .File.ContentBaseName "-" }}
+{{- $number := index $pathParts 0 }}
+{{- $titleParts := $pathParts | after 1 }}
+{{- $title := delimit $titleParts " " | title -}}
 ---
 # These documents have names that are short noun phrases.
-title: "TITLE"
+title: "{{ $title }}"
 # ADR's number
-number: "NNNN"
-# Decision created date
-date: DATE
+number: "{{ $number }}"
 # A decision **MAY** be "proposed" if the project stakeholders haven't decided on it yet, "accepted" once it is agreed, or "rejected" if not. If a later ADR changes or reverses a decision, it may be marked as "deprecated" or "superseded" with a reference to its replacement.
-status: proposed
+status: "proposed"
+# Decision created date
+date: "{{ .Date }}"
 ---
 
-# ADR NNNN: TITLE
+# ADR {{ $number }}: {{ $title }}
 
 <!-- These documents have names that are short noun phrases. -->
 
