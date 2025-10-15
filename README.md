@@ -9,3 +9,17 @@ I tend to be overly obsessive and pedantic when it comes to finding answers, esp
 I've learned to work through this feeling and to keep it at bay, especially at work, but sometimes it's so strong that it cripples my productivity and creativity. I'm pretty sure a lot of people would relate: instead of actually doing something, I spend more time thinking about and researching how to do it more efficiently. Some may call it procrastination or even a clinical issue, but after years of fighting it I decided to embrace it by creating a safe space for these obsessive tendencies to run wild. I cautiously believe this approach may actually improve my long‑term productivity.
  
 This is the fifth time I'm starting a repository for writing; let's see if this one sticks 😁
+
+## Run
+
+```console
+$ cd site
+$ hugo server -D
+```
+
+## Create ADR
+
+```console
+$ cd site
+$ hugo new --kind adr ../../adrs/NNNN-title.md
+```
