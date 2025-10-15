@@ -1,8 +1,8 @@
-+++
-date = '2025-10-07T22:50:04+01:00'
-draft = true
-title = 'Hugo New Site'
-+++
+---
+date: "2025-10-07T22:50:04+01:00"
+draft: true
+title: Hugo New Site
+---
 
 ## `hugo new site`
 

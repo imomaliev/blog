@@ -14,9 +14,14 @@ title = 'My New Hugo Site'
     weight = 20
 
   [[menus.main]]
+    name = 'ADRs'
+    pageRef = '/adrs'
+    weight = 30
+
+  [[menus.main]]
     name = 'Tags'
     pageRef = '/tags'
-    weight = 30
+    weight = 40
 
 [module]
   [module.hugoVersion]

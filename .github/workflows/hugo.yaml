@@ -80,6 +80,7 @@ jobs:
       - name: Build the site
         run: |
           cd site/
+          hugo mod get -u
           hugo \
             --gc \
             --minify \
