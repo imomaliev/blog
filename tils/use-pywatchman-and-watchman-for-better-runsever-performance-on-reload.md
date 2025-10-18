@@ -1,0 +1,2 @@
+If you’re using Linux or MacOS and install both [pywatchman](https://pypi.org/project/pywatchman/) and the [Watchman](https://facebook.github.io/watchman/) service, kernel signals will be used to autoreload the server (rather than polling file modification timestamps each second). This offers better performance on large projects, reduced response time after code changes, more robust change detection, and a reduction in power usage. Django supports `pywatchman` 1.2.0 and higher.
+https://docs.djangoproject.com/en/4.1/ref/django-admin/#runserver

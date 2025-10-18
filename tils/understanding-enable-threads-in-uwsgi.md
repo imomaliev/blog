@@ -1,0 +1,1 @@
+https://github.com/unbit/uwsgi/issues/1141
