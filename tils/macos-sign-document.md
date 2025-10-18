@@ -1,7 +1,6 @@
 ---
 title: "MacOS | Sign Document"
 date: 2021-04-05T12:42:35+07:00
-draft: false
 tags: ["macos"]
 ---
 
@@ -19,6 +18,6 @@ After I created `png` file with my signature I tried to upload it to `Preview` a
 
 1. Do not forget to ask the right questions
 
-## Links
+## Resources
 
--   https://support.apple.com/guide/preview/fill-out-and-sign-pdf-forms-prvw35725/11.0/mac/10.15
+- https://support.apple.com/guide/preview/fill-out-and-sign-pdf-forms-prvw35725/11.0/mac/10.15

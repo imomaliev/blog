@@ -1,7 +1,6 @@
 ---
 title: "Direnv | 'DIRENV_DIR' Env Variable"
 date: 2021-02-27T20:53:56+07:00
-draft: false
 tags: ["direnv"]
 ---
 

@@ -1,13 +1,12 @@
 ---
 title: 'TypeScript | Fix "TS2307: Cannot find module ''src'' or its corresponding type declarations."'
 date: 2021-09-20T22:33:27+07:00
-draft: false
 tags: ["typescript", "npm", "vuejs"]
 ---
 
 # TypeScript | Fix `TS2307: Cannot find module 'src' or its corresponding type declarations.`
 
-## Story
+## Context
 
 After I updated my `package.json` and installed all dependencies, my `npm run build` started failing with
 
@@ -43,7 +42,7 @@ This was a tricky one because at a first glance it may seem that I have a typesc
 1. [`skipLibCheck: true`](https://www.typescriptlang.org/tsconfig#skipLibCheck)
     > Skip type checking of declaration files.
 
-### Links
+### Resources
 
--   https://github.com/vuejs/vue-test-utils-next/issues/936
--   https://www.typescriptlang.org/tsconfig#skipLibCheck
+- https://github.com/vuejs/vue-test-utils-next/issues/936
+- https://www.typescriptlang.org/tsconfig#skipLibCheck

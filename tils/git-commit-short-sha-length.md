@@ -1,7 +1,6 @@
 ---
 title: "Git | Commit Short Sha Length"
 date: 2021-02-27T20:53:56+07:00
-draft: false
 tags: ["git"]
 ---
 

@@ -1,7 +1,6 @@
 ---
 title: "Debian | Find Out Release Name"
 date: 2021-03-30T17:45:58+07:00
-draft: false
 tags: ["debian"]
 ---
 
@@ -25,6 +24,6 @@ buster
 
 1. For ubuntu `. /etc/lsb-release`
 
-## Links
+## Resources
 
--   https://serverfault.com/a/897460/508888
+- https://serverfault.com/a/897460/508888

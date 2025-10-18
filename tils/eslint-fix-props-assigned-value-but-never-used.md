@@ -1,13 +1,12 @@
 ---
 title: 'ESLint | Fix "''props'' is assigned a value but never used @typescript-eslint/no-unused-vars"'
 date: 2021-10-04T22:03:46+07:00
-draft: false
 tags: ["eslint", "vuejs"]
 ---
 
 # ESLint | Fix `'props' is assigned a value but never used @typescript-eslint/no-unused-vars`
 
-## Story
+## Context
 
 This is a continuation of `script setup` syntax usage. `eslint` thinks that variables like `props`, `emits` etc. are not used, but actually they are.
 
@@ -32,7 +31,7 @@ module.exports = {
 }
 ```
 
-## Links
+## Resources
 
--   https://eslint.vuejs.org/rules/script-setup-uses-vars.html
--   https://eslint.vuejs.org/user-guide/#the-variables-used-in-the-template-are-warned-by-no-unused-vars-rule
+- https://eslint.vuejs.org/rules/script-setup-uses-vars.html
+- https://eslint.vuejs.org/user-guide/#the-variables-used-in-the-template-are-warned-by-no-unused-vars-rule

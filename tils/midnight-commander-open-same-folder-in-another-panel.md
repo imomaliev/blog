@@ -1,8 +1,7 @@
 ---
 title: "Midnight Commander | Open Same Folder in Another Panel"
 date: 2021-09-30T22:12:13+07:00
-draft: false
-tags: ["midnight-commander"]
+tags: ["midnight-commander", "mc"]
 ---
 
 # Midnight Commander | Open Same Folder in Another Panel
@@ -18,8 +17,8 @@ Use `Alt+i` or `Esc+i`. From man page
 <!-- prettier-ignore -->
 > Alt-i  make the current directory of the current panel also the current directory of the other panel. Put the other panel to the listing mode if needed.
 
-## Links
+## Resources
 
--   https://midnight-commander.org
--   https://github.com/MidnightCommander/mc
--   https://unix.stackexchange.com/a/5926/172777
+- https://midnight-commander.org
+- https://github.com/MidnightCommander/mc
+- https://unix.stackexchange.com/a/5926/172777

@@ -1,7 +1,6 @@
 ---
 title: "Docker | Show Only Unnamed Volumes"
 date: 2021-09-30T22:12:13+07:00
-draft: false
 tags: ["docker"]
 ---
 
@@ -19,6 +18,6 @@ Use `--format`.
 $ docker volume ls --format '{{.Name}}'
 ```
 
-## Links
+## Resources
 
--   https://docs.docker.com/config/formatting/
+- https://docs.docker.com/config/formatting/

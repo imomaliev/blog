@@ -1,13 +1,12 @@
 ---
 title: 'ESLint | Fix "''defineProps'' is not defined."'
 date: 2021-10-04T22:03:46+07:00
-draft: false
 tags: ["eslint", "vuejs"]
 ---
 
 # ESLint | Fix `'defineProps' is not defined.`
 
-## Story
+## Context
 
 In one of my `vue-ts` series' [article](https://dev.to/imomaliev/creating-vite-vue-ts-template-project-configs-improvements-3617), I was asked how to resolve [this](https://dev.to/algil/comment/1igom) issue
 
@@ -43,9 +42,9 @@ module.exports = {
 
 Basically in newer vue versions with `script setup` syntax `defineProps` is no longer needs to be imported because it is a `compliler macro` as it states in quote above. So the solution was just to configure `eslint` to not warn about `defineProps`
 
-## Links
+## Resources
 
--   https://dev.to/algil/comment/1igom
--   https://dev.to/imomaliev/creating-vite-vue-ts-template-project-configs-improvements-3617
--   https://eslint.vuejs.org/user-guide/#compiler-macros-such-as-defineprops-and-defineemits-are-warned-by-no-undef-rule
--   https://dev.to/imomaliev/comment/1ihh5
+- https://dev.to/algil/comment/1igom
+- https://dev.to/imomaliev/creating-vite-vue-ts-template-project-configs-improvements-3617
+- https://eslint.vuejs.org/user-guide/#compiler-macros-such-as-defineprops-and-defineemits-are-warned-by-no-undef-rule
+- https://dev.to/imomaliev/comment/1ihh5

@@ -1,7 +1,6 @@
 ---
 title: "Git | Show File On Specific Commit"
 date: 2021-03-23T15:01:17+07:00
-draft: false
 tags: ["git"]
 ---
 

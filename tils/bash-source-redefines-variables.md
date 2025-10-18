@@ -1,7 +1,6 @@
 ---
 title: "Bash | 'source' Redefines Variables"
 date: 2021-03-14T22:43:33+07:00
-draft: false
 tags: ["bash"]
 ---
 

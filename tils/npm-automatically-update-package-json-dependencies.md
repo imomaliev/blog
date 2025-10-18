@@ -1,13 +1,12 @@
 ---
 title: "NPM | Automatically Update package.json Dependencies"
 date: 2021-09-20T22:33:27+07:00
-draft: false
 tags: ["npm"]
 ---
 
 # NPM | Automatically Update `package.json` Dependencies
 
-## Story
+## Context
 
 During chore update of my [vue-ts template](https://github.com/imomaliev/vue-ts) dependencies (to learn more about it, read [here](https://dev.to/imomaliev/series/13845)) I was doing usual npm "upgrade" steps.
 
@@ -29,8 +28,8 @@ Quick searching pointed me to [this stackoverflow post](https://stackoverflow.co
 1. `npm -g install npm-check-updates`
 1. `ncu` to see outdated versions or `ncu --upgrade` to update the `package.json`.
 
-## Links
+## Resources
 
--   https://github.com/imomaliev/vue-ts
--   https://stackoverflow.com/questions/16073603/how-to-update-each-dependency-in-package-json-to-the-latest-version
--   https://www.npmjs.com/package/npm-check-updates
+- https://github.com/imomaliev/vue-ts
+- https://stackoverflow.com/questions/16073603/how-to-update-each-dependency-in-package-json-to-the-latest-version
+- https://www.npmjs.com/package/npm-check-updates

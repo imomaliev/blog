@@ -1,7 +1,6 @@
 ---
 title: "Mock | Get Image With Custom Size And Text"
 date: 2021-04-26T17:30:01+07:00
-draft: false
 tags: ["mock", "frontend"]
 ---
 

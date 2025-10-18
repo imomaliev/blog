@@ -1,8 +1,7 @@
 ---
 title: "Launchctl | Edit System Domain Config"
 date: 2021-03-30T17:45:58+07:00
-draft: false
-tags: ["macos", "launchctl"]
+tags: ["launchctl", "macos"]
 ---
 
 # Launchctl | How to edit system domain configs
@@ -36,9 +35,9 @@ Edit `/private/var/db/com.apple.xpc.launchd/disabled*` files and delete wrong da
     $ /sbin/mount -uw /
     ```
 
-## Links
+## Resources
 
--   https://eclecticlight.co/2019/10/08/macos-catalina-boot-volume-layout/
--   https://apple.stackexchange.com/questions/375603/catalina-not-allowing-to-change-read-write-permissions-despite-having-sip-disabl
--   https://apple.stackexchange.com/questions/388469/unable-to-mount-read-write-in-os-catalina-10-15-4-in-single-user-mode
--   https://stackoverflow.com/questions/31206756/launchctl-remove-enabled-disabled-override
+- https://eclecticlight.co/2019/10/08/macos-catalina-boot-volume-layout/
+- https://apple.stackexchange.com/questions/375603/catalina-not-allowing-to-change-read-write-permissions-despite-having-sip-disabl
+- https://apple.stackexchange.com/questions/388469/unable-to-mount-read-write-in-os-catalina-10-15-4-in-single-user-mode
+- https://stackoverflow.com/questions/31206756/launchctl-remove-enabled-disabled-override

@@ -1,8 +1,7 @@
 ---
 title: 'GitHub Actions | Fix "Error: Dependencies lock file is not found"'
 date: 2022-02-13T22:43:54+07:00
-draft: false
-tags: ["github-actions", "ci"]
+tags: ["github-actions", "github", "ci"]
 ---
 
 # GitHub Actions | Fix `Error: Dependencies lock file is not found`
@@ -34,6 +33,6 @@ This error occurs because by default, this job searches for `package-lock.json` 
 +                  cache-dependency-path: "./blog/package-lock.json"
 ```
 
-## Links
+## Resources
 
--   https://github.com/actions/setup-node#caching-packages-dependencies
+- https://github.com/actions/setup-node#caching-packages-dependencies

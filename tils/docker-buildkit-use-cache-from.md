@@ -1,7 +1,6 @@
 ---
 title: "Docker | Buildkit Use Cache From"
 date: 2021-05-29T12:12:34+07:00
-draft: false
 tags: ["docker", "ci"]
 ---
 
@@ -21,8 +20,8 @@ From docs
 >
 > To use an image as a cache source, cache metadata needs to be written into the image on creation. This can be done by setting --build-arg BUILDKIT_INLINE_CACHE=1 when building the image. After that, the built image can be used as a cache source for subsequent builds.
 
-## Links
+## Resources
 
--   https://devops.stackexchange.com/questions/11175/build-docker-images-with-dind-and-buildkit
--   https://docs.docker.com/engine/reference/commandline/build/#specifying-external-cache-sources
--   https://testdriven.io/blog/faster-ci-builds-with-docker-cache/#buildkit
+- https://devops.stackexchange.com/questions/11175/build-docker-images-with-dind-and-buildkit
+- https://docs.docker.com/engine/reference/commandline/build/#specifying-external-cache-sources
+- https://testdriven.io/blog/faster-ci-builds-with-docker-cache/#buildkit

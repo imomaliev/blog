@@ -1,8 +1,7 @@
 ---
 title: "Forticlient | Disable Launch At Login"
 date: 2021-03-04T01:01:45+07:00
-draft: false
-tags: ["vpn"]
+tags: ["forticlient", "vpn"]
 ---
 
 # FortiClient | How to disable launch at login
@@ -18,6 +17,6 @@ $ sudo vim /Library/LaunchAgents/com.fortinet.forticlient.fct_launcher.plist
 # edit <key>RunAtLoad</key> to <false/> value
 ```
 
-## Links
+## Resources
 
--   https://forum.fortinet.com/tm.aspx?m=97324
+- https://forum.fortinet.com/tm.aspx?m=97324

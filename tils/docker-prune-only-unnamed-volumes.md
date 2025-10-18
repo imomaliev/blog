@@ -1,13 +1,12 @@
 ---
 title: "Docker | Prune Only Unnamed Volumes"
 date: 2021-09-30T22:12:13+07:00
-draft: false
 tags: ["docker"]
 ---
 
 # Docker | Prune Only Unnamed Volumes
 
-## Story
+## Context
 
 I was trying to do some cleanup of space for docker and needed to prune my unnamed volumes names.
 
@@ -61,7 +60,7 @@ $ docker volume ls --filter 'label!=com.docker.compose.project'
 Error response from daemon: Invalid filter 'label!'
 ```
 
-## Links
+## Resources
 
--   https://docs.docker.com/engine/reference/commandline/volume_inspect/
--   https://docs.docker.com/config/pruning/#prune-volumes
+- https://docs.docker.com/engine/reference/commandline/volume_inspect/
+- https://docs.docker.com/config/pruning/#prune-volumes

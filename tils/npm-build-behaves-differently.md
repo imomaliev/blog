@@ -1,8 +1,7 @@
 ---
 title: "NPM | Build Behaves Differently Inside Docker"
 date: 2021-03-29T12:56:05+07:00
-draft: false
-tags: ["docker"]
+tags: ["npm"]
 ---
 
 # NPM | build behaves differently inside docker

@@ -1,13 +1,12 @@
 ---
 title: "Hugo | Rebuild Styles on Source Change when using TailwindCSS 3.x"
 date: 2022-02-14T17:54:27+07:00
-draft: false
 tags: ["hugo", "postcss", "tailwindcss"]
 ---
 
 # Hugo | Rebuild Styles on Source Change when using TailwindCSS 3.x
 
-## Story
+## Context
 
 After applying styles rebuild hack provided by [@Gioni06](https://github.com/Gioni06), [@nnooney](https://github.com/nnooney) and [@istr](https://github.com/istr) in [this issue](https://github.com/gohugoio/hugo/issues/8343) and looks like this
 
@@ -82,10 +81,10 @@ Here we're using [`getJSON`](https://gohugo.io/templates/data-templates/#get-rem
 
 For some reason, reading `hugo_stats.json` with [`readFile`](https://gohugo.io/functions/readfile/) does not work properly for this use case.
 
-## Links
+## Resources
 
--   https://github.com/gohugoio/hugo/issues/8343
--   https://gohugo.io/functions/partialcached/
--   https://gohugo.io/getting-started/configuration/#configure-build
--   https://gohugo.io/functions/readfile/
--   https://dev.to/jonas_duri/how-to-use-tailwindcss-30-without-external-npm-scripts-just-hugo-pipes-2lg9
+- https://github.com/gohugoio/hugo/issues/8343
+- https://gohugo.io/functions/partialcached/
+- https://gohugo.io/getting-started/configuration/#configure-build
+- https://gohugo.io/functions/readfile/
+- https://dev.to/jonas_duri/how-to-use-tailwindcss-30-without-external-npm-scripts-just-hugo-pipes-2lg9

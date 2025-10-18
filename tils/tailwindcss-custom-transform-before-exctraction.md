@@ -1,13 +1,12 @@
 ---
 title: "TailwindCSS | Custom Transform Before Exctraction"
 date: 2022-02-13T21:58:46+07:00
-draft: false
-tags: ["tailwindcss", "hugo", "postcss"]
+tags: ["tailwindcss", "tailwind", "hugo", "postcss"]
 ---
 
 # TailwindCSS | Custom Transform Before Exctraction
 
-## Story
+## Context
 
 I was trying to make [`Hugo`](https://gohugo.io/) work correctly with
 [`TailwindCSS`](https://tailwindcss.com/) `3.x` which now uses `jit` by default and
@@ -51,9 +50,9 @@ In the beginning I thought it would be possible to same trick with
 [`content.extract`](https://tailwindcss.com/docs/content-configuration#customizing-extraction-logic)
 but it turns out, `extract` process content line by line. This is why, for `TailwindCSS >= 3.x` we should use `content.transform` which runs on whole file.
 
-## Links
+## Resources
 
--   https://gohugo.io/hugo-pipes/introduction/
--   https://gohugo.io/hugo-pipes/postprocess/#css-purging-with-postcss
--   https://tailwindcss.com/docs/content-configuration#transforming-source-files
--   https://tailwindcss.com/docs/content-configuration#customizing-extraction-logic
+- https://gohugo.io/hugo-pipes/introduction/
+- https://gohugo.io/hugo-pipes/postprocess/#css-purging-with-postcss
+- https://tailwindcss.com/docs/content-configuration#transforming-source-files
+- https://tailwindcss.com/docs/content-configuration#customizing-extraction-logic
