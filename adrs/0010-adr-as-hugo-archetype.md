@@ -15,59 +15,49 @@ date: "2025-10-15T21:33:27+01:00"
 
 ## Decision
 
-Use symlink
 <!-- This section describes our response to these forces. It is stated in full sentences, with active voice. "We **MUST** …" -->
 
-link `TEMPLATE.md` as archetype
+Mount `TEMPLATE.md` as an archetype
 
-```console
-$ cd theme/archetypes/
-$ ln -s ../../adrs/TEMPLATE.md adr.md
+```toml
+  [[module.mounts]]
+    source = '../adrs/TEMPLATE.md'
+    target = 'archetypes/adr.md'
+
+  # manually added all default mounts because adding custom one in theme causes them to be
+  # fully replaced for a theme, but for a site you only need to replace the updated mounted
+  # https://github.com/gohugoio/hugoDocs/issues/3238
+  # https://gohugo.io/configuration/module/#default-mounts
+  [[module.mounts]]
+    source = 'content'
+    target = 'content'
+  [[module.mounts]]
+    source = 'data'
+    target = 'data'
+  [[module.mounts]]
+    source = 'layouts'
+    target = 'layouts'
+  [[module.mounts]]
+    source = 'i18n'
+    target = 'i18n'
+  [[module.mounts]]
+    source = 'archetypes'
+    target = 'archetypes'
+  [[module.mounts]]
+    source = 'assets'
+    target = 'assets'
+  [[module.mounts]]
+    source = 'static'
+    target = 'static'
 ```
+
+Because we are using `replacements` the `source` should be relative to `theme` folder in the root, and not in `site/themes` folder
 
 ## Alternatives
 
 <!-- This section describes **considered** alternatives to the _decision_. Each _alternative_ **MUST** have a **Verdict** specifying the reason it was not choosen. -->
 
-Modules
-
-```
-
-  [[module.mounts]]
-    source = '../../../adrs/TEMPLATE.md'
-    target = 'archetypes/adr.md'
-
-  # manually added all default mounts because adding custom one in theme cuases them to be
-  # fully replaced for a theme, but for a site you only need to replace the updated mounted
-  # https://gohugo.io/configuration/module/#default-mounts
-  [[module.mounts]]
-    source = 'content'
-    target = 'content'
-
-  [[module.mounts]]
-    source = 'data'
-    target = 'data'
-
-  [[module.mounts]]
-    source = 'layouts'
-    target = 'layouts'
-
-  [[module.mounts]]
-    source = 'i18n'
-    target = 'i18n'
-
-  [[module.mounts]]
-    source = 'archetypes'
-    target = 'archetypes'
-
-  [[module.mounts]]
-    source = 'assets'
-    target = 'assets'
-
-  [[module.mounts]]
-    source = 'static'
-    target = 'static'
-```
+Use symlinks. Not portable.
 
 ## Consequences
 

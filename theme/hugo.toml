@@ -27,3 +27,33 @@ title = 'My New Hugo Site'
   [module.hugoVersion]
     extended = false
     min = '0.146.0'
+
+  [[module.mounts]]
+    source = '../adrs/TEMPLATE.md'
+    target = 'archetypes/adr.md'
+
+  # manually added all default mounts because adding custom one in theme causes them to be
+  # fully replaced for a theme, but for a site you only need to replace the updated mounted
+  # https://github.com/gohugoio/hugoDocs/issues/3238
+  # https://gohugo.io/configuration/module/#default-mounts
+  [[module.mounts]]
+    source = 'content'
+    target = 'content'
+  [[module.mounts]]
+    source = 'data'
+    target = 'data'
+  [[module.mounts]]
+    source = 'layouts'
+    target = 'layouts'
+  [[module.mounts]]
+    source = 'i18n'
+    target = 'i18n'
+  [[module.mounts]]
+    source = 'archetypes'
+    target = 'archetypes'
+  [[module.mounts]]
+    source = 'assets'
+    target = 'assets'
+  [[module.mounts]]
+    source = 'static'
+    target = 'static'
