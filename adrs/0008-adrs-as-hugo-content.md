@@ -23,12 +23,16 @@ Add `_index.md` to `theme/content/adrs/` because this is part of the theme
 
 Configure modules
 
-```toml
-[module]
-  [[module.mounts]]
-    includeFiles = ['[0-9][0-9][0-9][0-9]-*.md']
-    source = 'content/adrs'
-    target = 'content/adrs'
+```diff
++[module]
++  [[module.mounts]]
++    includeFiles = ['[0-9][0-9][0-9][0-9]-*.md']
++    source = 'content/adrs'
++    target = 'content/adrs'
++
++  [[module.mounts]]
++    source = 'content'
++    target = 'content'
 ```
 
 https://discourse.gohugo.io/t/solved-how-do-i-add-module-mounts-to-hugo-toml-config-in-a-theme/46489

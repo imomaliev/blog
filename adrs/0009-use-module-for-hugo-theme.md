@@ -19,6 +19,43 @@ https://gohugo.io/hugo-modules/use-modules/#use-a-module-for-a-theme
 
 <!-- This section describes our response to these forces. It is stated in full sentences, with active voice. "We **MUST** …" -->
 
+```
+$ cd /theme/
+$ hugo mod init github.com/imomaliev/blog
+$ git add go.mod
+$ git commit 
+$ git push
+$ cd ../site/
+$ hugo mod init github.com/imomaliev/blog
+$ hugo mod get github.com/imomaliev/blog/theme
+$ hugo mod get -u
+$ hugo mod tidy
+```
+NOTE: `hugo mod tidy` will remove `github.com/imomaliev/blog/theme` from `go.mod`, making `go.sum` useless.
+
+We can just `rm go.sum`
+
+
+Replacement for local development
+
+```diff
+[module]
++  replacements = 'github.com/imomaliev/blog/theme -> ../../theme'
++
++  [[module.imports]]
++    path = 'github.com/imomaliev/blog/theme'
+```
+
+```console
+$ hugo mod get github.com/imomaliev/blog/theme
+go: no module dependencies to download
+go: github.com/imomaliev/blog/theme@upgrade: no matching versions for query "upgrade"
+hugo: collected modules in 558 msError: failed to load modules: failed to get ["github.com/imomaliev/blog/theme@upgrade"]: failed to execute 'go [get github.com/imomaliev/blog/theme@upgrade]': failed to execute binary "go" with args [get github.com/imomaliev/blog/theme@upgrade]: go: github.com/imomaliev/blog/theme@upgrade: no matching versions for query "upgrade"
+
+```
+No go.mod in theme folder in github
+
+
 ## Alternatives
 
 <!-- This section describes **considered** alternatives to the _decision_. Each _alternative_ **MUST** have a **Verdict** specifying the reason it was not choosen. -->
