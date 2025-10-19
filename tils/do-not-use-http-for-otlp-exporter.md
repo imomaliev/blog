@@ -1,1 +1,0 @@
-For some reason http://otel-collectory:4317 doesn't work but otel-collector:4317 works

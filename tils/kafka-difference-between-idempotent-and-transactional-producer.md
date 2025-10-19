@@ -1,6 +1,10 @@
 ---
-tags: ["til", "kafka"]
+title: "Kafka | Difference Between Idempotent And Transactional Producer"
+date: 2023-11-13T17:33:22+0000
+tags: ["kafka", "producer"]
 ---
+
+# Kafka | Difference Between Idempotent And Transactional Producer
 
 ## Context
 
@@ -21,6 +25,8 @@ Quote from Bing Chat
 
 > `enable.idempotence=true` ensures that each message is delivered exactly once, preventing duplicates due to producer retries. The transactional API, on the other hand, ensures that a group of messages across multiple partitions are all committed, or none of them are, providing atomicity.
 
-## Links
+## What I Learned
+
+## Resources
 
 - [Difference between kafka idempotent and transactional producer setup?](https://stackoverflow.com/questions/60283718/difference-between-kafka-idempotent-and-transactional-producer-setup)

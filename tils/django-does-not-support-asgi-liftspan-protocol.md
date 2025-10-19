@@ -1,13 +1,27 @@
+---
+title: "Django | Does Not Support Asgi's Liftspan Protocol"
+date: 2023-11-02T14:21:48+0000
+tags: ["django"]
+---
+
+# Django | Does Not Support Asgi's Liftspan Protocol
+
 ## Context
 - https://asgi.readthedocs.io/en/latest/specs/lifespan.html#startup-complete-send-event
 - https://code.djangoproject.com/ticket/32172
 - https://github.com/django/django/pull/16547
 
-## If using gunicorn with uvicorn worker
+## Question
+
+Does django support asgi's liftspan protocol'
+
+## Answer
+
+### If using gunicorn with uvicorn worker
+
 In `uvicorn_worker.py`
 ```python
 from uvicorn.workers import UvicornWorker as BaseUvicornWorker
-
 
 # Django does not support Lifespan Protocol
 # https://asgi.readthedocs.io/en/latest/specs/lifespan.html
@@ -27,5 +41,7 @@ In `gunicorn.conf.py`
 worker_class = "uvicorn_worker.UvicornWorker"
 ```
 
-## SO
-https://stackoverflow.com/questions/61300314/django-uvicorn
+## What I Learned
+
+## Resources
+- https://stackoverflow.com/questions/61300314/django-uvicorn

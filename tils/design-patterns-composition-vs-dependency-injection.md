@@ -1,8 +1,18 @@
 ---
-tags:
-  - til
-date: 2023-11-14
+title: "Design Patterns | Composition Vs Dependency Injection"
+date: 2023-11-30T14:02:00+0000
+tags: ["design-patterns", "composition", "dependency injection"]
 ---
+
+# Design Patterns | Composition Vs Dependency Injection
+
+## Context
+
+## Question
+
+What is a difference between Composition and Dependency Injection?
+
+## Answer
 
 > Composition and dependency injection (DI) are related concepts, but they address different aspects of software design. Let's clarify the distinctions between composition and dependency injection:
 > 
@@ -78,3 +88,7 @@ date: 2023-11-14
 > - **Dependency injection is a way of providing the necessary dependencies to a class from the outside.** It's about creating a relationship between a class and its dependencies based on their interactions.
 > 
 > In practice, these concepts can often be used together. You might use composition to build a class and then use dependency injection to provide external dependencies to that class. However, they address different concerns and are not mutually exclusive.
+
+## What I Learned
+
+## Resources
