@@ -19,9 +19,14 @@ title = 'My New Hugo Site'
     weight = 30
 
   [[menus.main]]
+    name = 'TILs'
+    pageRef = '/tils'
+    weight = 40
+
+  [[menus.main]]
     name = 'Tags'
     pageRef = '/tags'
-    weight = 40
+    weight = 50
 
 [module]
   [module.hugoVersion]
@@ -31,6 +36,10 @@ title = 'My New Hugo Site'
   [[module.mounts]]
     source = '../adrs/TEMPLATE.md'
     target = 'archetypes/adr.md'
+
+  [[module.mounts]]
+    source = '../tils/TEMPLATE.md'
+    target = 'archetypes/til.md'
 
   # manually added all default mounts because adding custom one in theme causes them to be
   # fully replaced for a theme, but for a site you only need to replace the updated mounted

@@ -12,10 +12,17 @@ title = 'Blog'
   [[module.imports]]
     path = 'github.com/imomaliev/blog/theme'
 
+  # mount ADRs as content
   [[module.mounts]]
     includeFiles = ['[0-9][0-9][0-9][0-9]-*.md']
     source = '../adrs'
     target = 'content/adrs'
+
+  # mount TILs as content
+  [[module.mounts]]
+    includeFiles = ['*-*.md']
+    source = '../tils'
+    target = 'content/tils'
 
   [[module.mounts]]
     source = 'content'
