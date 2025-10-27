@@ -19,7 +19,7 @@ https://gohugo.io/hugo-modules/use-modules/#use-a-module-for-a-theme
 
 <!-- This section describes our response to these forces. It is stated in full sentences, with active voice. "We **MUST** …" -->
 
-```
+```console
 $ cd /theme/
 $ hugo mod init github.com/imomaliev/blog
 $ git add go.mod
