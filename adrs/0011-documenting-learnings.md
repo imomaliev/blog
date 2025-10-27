@@ -2,7 +2,7 @@
 title: "Documenting Learnings"
 number: "0011"
 status: "accepted"
-date: "2025-10-18T20:16:30+01:00"
+date: 2025-10-18T20:16:30+01:00
 ---
 
 # ADR 0011: Documenting Learnings

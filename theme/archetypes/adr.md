@@ -15,7 +15,7 @@ number: "{{ $number }}"
 # A decision **MAY** be "proposed" if the project stakeholders haven't decided on it yet, "accepted" once it is agreed, or "rejected" if not. If a later ADR changes or reverses a decision, it may be marked as "deprecated" or "superseded" with a reference to its replacement.
 status: "accepted"
 # Decision created date
-date: "{{ .Date }}"
+date: {{ .Date }}
 ---
 
 # ADR {{ $number }}: {{ $title }}

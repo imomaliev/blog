@@ -1,11 +1,11 @@
 ---
-title: "ADRs as Hugo Content"
-number: "0008"
+title: "Dates in Frontmatter"
+number: "0012"
 status: "accepted"
-date: 2025-10-15T20:50:18+01:00
+date: 2025-10-27T20:45:21Z
 ---
 
-# ADR 0008: ADRs as Hugo Content
+# ADR 0012: Dates in Frontmatter
 
 <!-- These documents have names that are short noun phrases. -->
 
@@ -13,38 +13,21 @@ date: 2025-10-15T20:50:18+01:00
 
 <!-- This section describes the forces at play, including technological, political, social, and project local. These forces are probably in tension, and should be called out as such. The language in this section is value-neutral. It is simply describing facts. -->
 
+By default hugo will use date format in yaml and toml as strings. This is required for easier parsability https://gohugo.io/functions/time/format/
+
 ## Decision
 
-Use `adrs/` as Hugo content via module mounts
+<!-- This section describes our response to these forces. It is stated in full sentences, with active voice. "We **MUST** …" -->
 
-Update `theme/hugo.toml` menu
+Use yaml timestamps in IS8601 format for dates in frontmatter
 
-Add `_index.md` to `theme/content/adrs/` because this is part of the theme
-
-Configure modules
-
-```diff
-+[module]
-+  [[module.mounts]]
-+    includeFiles = ['[0-9][0-9][0-9][0-9]-*.md']
-+    source = 'content/adrs'
-+    target = 'content/adrs'
-+
-+  [[module.mounts]]
-+    source = 'content'
-+    target = 'content'
-```
-
-https://discourse.gohugo.io/t/solved-how-do-i-add-module-mounts-to-hugo-toml-config-in-a-theme/46489
-https://gohugo.io/configuration/module/#default-mounts
-> Adding a new mount to a target root will cause the existing default mount for that root to be ignored. If you still need the default mount, you must explicitly add it along with the new mount.
+https://yaml.org/spec/1.2.2/#example-timestamps
 
 ## Alternatives
 
 <!-- This section describes **considered** alternatives to the _decision_. Each _alternative_ **MUST** have a **Verdict** specifying the reason it was not choosen. -->
 
-Symlinks
-https://github.com/gohugoio/hugo/issues/5927
+keep using strings
 
 ## Consequences
 
@@ -53,3 +36,4 @@ https://github.com/gohugoio/hugo/issues/5927
 ## Resources
 
 <!-- This section lists references, sources, or further reading recommendations that were used to form the _decision_ or provide an additional context. -->
+- https://toml.io/en/v1.0.0#offset-date-time

@@ -2,7 +2,7 @@
 title: "Use Module for Hugo Theme"
 number: "0009"
 status: "accepted"
-date: "2025-10-15T21:03:35+01:00"
+date: 2025-10-15T21:03:35+01:00
 ---
 
 # ADR 0009: Use Module for Hugo Theme

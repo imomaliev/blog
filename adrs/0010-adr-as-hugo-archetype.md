@@ -2,7 +2,7 @@
 title: "ADR as Hugo Archetype"
 number: "0010"
 status: "accepted"
-date: "2025-10-15T21:33:27+01:00"
+date: 2025-10-15T21:33:27+01:00
 ---
 
 # ADR 0010: ADR as Hugo Archetype
