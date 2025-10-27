@@ -1,11 +1,11 @@
 ---
-title: "Dates in Frontmatter"
+title: "Dates in Front Matter"
 number: "0012"
 status: "accepted"
 date: 2025-10-27T20:45:21Z
 ---
 
-# ADR 0012: Dates in Frontmatter
+# ADR 0012: Dates in Front Matter
 
 <!-- These documents have names that are short noun phrases. -->
 
@@ -19,7 +19,7 @@ By default hugo will use date format in yaml and toml as strings. This is requir
 
 <!-- This section describes our response to these forces. It is stated in full sentences, with active voice. "We **MUST** …" -->
 
-Use yaml timestamps in IS8601 format for dates in frontmatter
+Use yaml timestamps in IS8601 format for dates in front matter
 
 https://yaml.org/spec/1.2.2/#example-timestamps
 
