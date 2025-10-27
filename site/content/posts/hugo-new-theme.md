@@ -1,5 +1,5 @@
 ---
-date: "2025-10-07T22:52:34+01:00"
+date: 2025-10-07T22:52:34+01:00
 draft: true
 title: Hugo New Theme
 ---

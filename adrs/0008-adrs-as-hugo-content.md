@@ -2,7 +2,7 @@
 title: "ADRs as Hugo Content"
 number: "0008"
 status: "accepted"
-date: "2025-10-15T20:50:18+01:00"
+date: 2025-10-15T20:50:18+01:00
 ---
 
 # ADR 0008: ADRs as Hugo Content

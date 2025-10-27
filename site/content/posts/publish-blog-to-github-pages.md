@@ -1,5 +1,5 @@
 ---
-date: "2025-10-07T22:58:43+01:00"
+date: 2025-10-07T22:58:43+01:00
 draft: true
 title: Publish Blog to Github Pages
 ---
