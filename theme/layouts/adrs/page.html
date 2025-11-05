@@ -1,10 +1,11 @@
 {{ define "main" }}
-  <h1 id="title">{{ .Title }}</h1>
+  <h1 id="title">{{ .Params.number }}: {{ .LinkTitle }}</h1>
 
   {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
   {{ $dateHuman := .Date | time.Format ":date_long" }}
   <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
 
-  {{ .Content }}
+  {{- /* Do not render H1 from ADR */}}
+  {{- replaceRE "(.*)<h1.*</h1>(.*)" "$1$2" .Content | safeHTML }}
   {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
 {{ end }}

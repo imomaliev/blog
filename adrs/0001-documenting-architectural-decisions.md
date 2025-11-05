@@ -4,6 +4,7 @@ number: "0001"
 status: "accepted"
 date: 2025-10-10T22:01:33+01:00
 ---
+
 # ADR 0001: Documenting Architectural Decisions
 
 ## Context
