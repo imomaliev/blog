@@ -10,7 +10,8 @@ Dates[^1] in front matter **MUST** be unquoted [yaml timestamp](https://yaml.org
 
 ## Spelling
 
-"front matter"[^2]
+- "front matter"[^2]
+- "Devlog"
 
 ## Commits
 

@@ -21,6 +21,8 @@ date: 2025-10-27T21:50:52Z
 
 <!-- This section describes our response to these forces. It is stated in full sentences, with active voice. "We **MUST** …" -->
 
+Use `Devlog` spelling so that it reads like a single word.
+
 ## Alternatives
 
 <!-- This section describes **considered** alternatives to the _decision_. Each _alternative_ **MUST** have a **Verdict** specifying the reason it was not choosen. -->
