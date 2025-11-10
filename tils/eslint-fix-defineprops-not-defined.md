@@ -1,5 +1,5 @@
 ---
-title: 'ESLint | Fix "''defineProps'' is not defined."'
+title: "ESLint | Fix \"'defineProps' is not defined.\""
 date: 2021-10-04T22:03:46+07:00
 tags: ["eslint", "vuejs"]
 ---

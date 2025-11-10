@@ -8,6 +8,12 @@ As per [ADR-0002](/adrs/0002-use-yaml-front-matter.md) all front-matter **MUST**
 
 Dates[^1] in front matter **MUST** be unquoted [yaml timestamp](https://yaml.org/spec/1.2.2/#example-timestamps) in [ISO8601](https://www.iso.org/iso-8601-date-and-time-format.html)
 
+### Title
+
+<!-- TODO: add ADR for this, maybe add to ADR-0001 -->
+
+`title` **MUST** always be double quoted.
+
 ## Spelling
 
 - "front matter"[^2]

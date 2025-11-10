@@ -1,5 +1,5 @@
 ---
-title: 'GitHub Actions | Fix "Error: Dependencies lock file is not found"'
+title: "GitHub Actions | Fix \"Error: Dependencies lock file is not found\""
 date: 2022-02-13T22:43:54+07:00
 tags: ["github-actions", "github", "ci"]
 ---

@@ -1,5 +1,5 @@
 ---
-title: 'ESLint | Fix "''props'' is assigned a value but never used @typescript-eslint/no-unused-vars"'
+title: "ESLint | Fix \"'props' is assigned a value but never used @typescript-eslint/no-unused-vars\""
 date: 2021-10-04T22:03:46+07:00
 tags: ["eslint", "vuejs"]
 ---
