@@ -1,5 +1,5 @@
 ---
-title: 'TypeScript | Fix "TS2307: Cannot find module ''src'' or its corresponding type declarations."'
+title: "TypeScript | Fix \"TS2307: Cannot find module 'src' or its corresponding type declarations.\""
 date: 2021-09-20T22:33:27+07:00
 tags: ["typescript", "npm", "vuejs"]
 ---

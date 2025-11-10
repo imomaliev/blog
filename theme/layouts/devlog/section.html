@@ -1,0 +1,12 @@
+{{ define "main" }}
+  <h1>{{ .Title }}</h1>
+  {{ .Content }}
+  {{ $number := .Pages.Len }}
+  {{ range .Pages }}
+    {{ .Store.Set "number" $number }}
+    <article>
+      <h2><a href="{{ .RelPermalink }}">#{{ $number }} {{ .LinkTitle }}</a></h2>
+    </article>
+    {{ $number = sub $number 1 }}
+  {{ end }}
+{{ end }}

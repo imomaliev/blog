@@ -5,6 +5,7 @@
   {{ $dateHuman := .Date | time.Format ":date_long" }}
   <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
 
-  {{ .Content }}
+  {{- /* Do not render H1 from TIL */}}
+  {{- replaceRE "(.*)<h1.*</h1>(.*)" "$1$2" .Content | safeHTML }}
   {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
 {{ end }}

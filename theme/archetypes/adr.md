@@ -8,14 +8,14 @@
 {{- $titleParts := $pathParts | after 1 }}
 {{- $title := delimit $titleParts " " | title -}}
 ---
-# These documents have names that are short noun phrases.
-title: "{{ $title }}"
 # ADR's number
 number: "{{ $number }}"
-# A decision **MAY** be "proposed" if the project stakeholders haven't decided on it yet, "accepted" once it is agreed, or "rejected" if not. If a later ADR changes or reverses a decision, it may be marked as "deprecated" or "superseded" with a reference to its replacement.
-status: "accepted"
+# These documents have names that are short noun phrases.
+title: "{{ $title }}"
 # Decision created date
 date: {{ .Date }}
+# A decision **MAY** be "proposed" if the project stakeholders haven't decided on it yet, "accepted" once it is agreed, or "rejected" if not. If a later ADR changes or reverses a decision, it may be marked as "deprecated" or "superseded" with a reference to its replacement.
+status: "accepted"
 ---
 
 # ADR {{ $number }}: {{ $title }}
