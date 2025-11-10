@@ -1,8 +1,8 @@
 ---
-title: "Dates in Front Matter"
 number: "0012"
-status: "accepted"
+title: "Dates in Front Matter"
 date: 2025-10-27T20:45:21Z
+status: "accepted"
 ---
 
 # ADR 0012: Dates in Front Matter

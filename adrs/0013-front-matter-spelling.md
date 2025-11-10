@@ -1,8 +1,8 @@
 ---
-title: "\"Front Matter\" Spelling"
 number: "0013"
-status: "accepted"
+title: "\"Front Matter\" Spelling"
 date: 2025-10-27T21:21:44Z
+status: "accepted"
 ---
 
 # ADR 0013: "Front Matter" Spelling

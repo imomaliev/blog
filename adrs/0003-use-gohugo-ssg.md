@@ -1,8 +1,8 @@
 ---
-title: "Use GoHugo SSG"
 number: "0003"
-status: "accepted"
+title: "Use GoHugo SSG"
 date: 2025-10-12T12:47:51+01:00
+status: "accepted"
 ---
 
 # ADR 0003: Use GoHugo SSG

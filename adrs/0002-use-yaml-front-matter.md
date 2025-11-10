@@ -1,8 +1,8 @@
 ---
-title: "Use YAML Front Matter"
 number: "0002"
-status: "accepted"
+title: "Use YAML Front Matter"
 date: 2025-10-11T21:55:12+01:00
+status: "accepted"
 ---
 
 # ADR 0002: Use YAML Front Matter

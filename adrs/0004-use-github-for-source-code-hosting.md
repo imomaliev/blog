@@ -1,8 +1,8 @@
 ---
-title: "Use GitHub for Source Code Hosting"
 number: "0004"
-status: "accepted"
+title: "Use GitHub for Source Code Hosting"
 date: 2025-10-12T12:52:17+01:00
+status: "accepted"
 ---
 
 # ADR 0004: Use GitHub for Source Code Hosting

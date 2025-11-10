@@ -1,8 +1,8 @@
 ---
-title: "Create New Hugo Theme"
 number: "0005"
-status: "accepted"
+title: "Create New Hugo Theme"
 date: 2025-10-12T12:55:23+01:00
+status: "accepted"
 ---
 
 # ADR 0005: Create New Hugo Theme

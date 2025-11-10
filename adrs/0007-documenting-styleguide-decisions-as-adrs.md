@@ -1,8 +1,8 @@
 ---
-title: "Documenting Styleguide Decisions as ADRs"
 number: "0007"
-status: "accepted"
+title: "Documenting Styleguide Decisions as ADRs"
 date: 2025-10-12T13:32:04+01:00
+status: "accepted"
 ---
 
 # ADR 0007: Documenting Styleguide Decisions as ADRs
