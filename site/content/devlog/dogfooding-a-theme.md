@@ -51,7 +51,7 @@ We've already created the Hugo site and pushed it to GitHub. Now is the time to 
     +    path = 'github.com/imomaliev/blog/theme'
     ```
 
-1. Finally, because our theme is in the same repo, we can just use [`replace`](https://gohugo.io/hugo-modules/use-modules/#make-and-test-changes-in-a-module).
+1. Finally, because our theme is in the same repo, we can just use [`replacements`](https://gohugo.io/hugo-modules/use-modules/#make-and-test-changes-in-a-module).
 
     ```diff
     diff --git a/site/hugo.toml b/site/hugo.toml
