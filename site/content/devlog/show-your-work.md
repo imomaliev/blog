@@ -1,6 +1,7 @@
 ---
 title: "Show Your Work"
 date: "2026-01-24T21:37:56Z"
+tags: ["hugo", "github", "github-actions", "github-pages", "dns"]
 ---
 
 Our blog is a [few steps](https://gohugo.io/getting-started/quick-start/#configure-the-site) away from being ready to see the world[^1].
