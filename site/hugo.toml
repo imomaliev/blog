@@ -1,9 +1,13 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://imomaliev.com/'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
+title = 'Blog'
 
 [module]
   replacements = 'github.com/imomaliev/blog/theme -> ../../theme'
 
   [[module.imports]]
     path = 'github.com/imomaliev/blog/theme'
+
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
