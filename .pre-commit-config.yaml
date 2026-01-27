@@ -11,3 +11,11 @@ repos:
     rev: v3.6.0
     hooks:
     -   id: editorconfig-checker
+        name: run editorconfig-checker excluding markdown
+        exclude_types: [markdown]
+    -   id: editorconfig-checker
+        name: run editorconfig-checker for markdown
+        # Disable indent size check for code block
+        # See https://github.com/editorconfig-checker/editorconfig-checker/issues/351
+        args: [-disable-indent-size]
+        types_or: [markdown]
