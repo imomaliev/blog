@@ -4,7 +4,7 @@ date: "2026-01-23T22:05:28Z"
 tags: ["hugo", "github", "git"]
 ---
 
-I will start at the very "beginning" and go through the [official quickstart guide](https://gohugo.io/getting-started/quick-start/). My goal is to achieve the same results as so I can start blogging ASAP but I will be doing it a bit differently than how it is outlined in the guide. I will explain my decisions along the way. So let's create the Hugo site.
+I will start at the very "beginning" and go through the [official quickstart guide](https://gohugo.io/getting-started/quick-start/). My goal is to achieve the same results so I can start blogging ASAP but I will be doing it a bit differently than how it is outlined in the guide. I will explain my decisions along the way. So let's create the Hugo site.
 
 The quickstart docs suggest creating a new site skeleton and initializing git in the created site's root.
 
@@ -65,6 +65,8 @@ In my opinion, this is not as good as having a separate folder that will contain
      /public/
      /resources/_gen/
     ```
+
+    Commit changes.
 
     ```console
     $ git add -u
