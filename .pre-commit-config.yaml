@@ -4,9 +4,14 @@ repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
     hooks:
+    -   id: trailing-whitespace
+        # Two or more spaces at the end of the line are parsed as hard line break
+        exclude_types: [markdown]
+    -   id: end-of-file-fixer
     -   id: check-yaml
     -   id: check-toml
     -   id: check-added-large-files
+    # TODO: replace with autoformating hook
 -   repo: https://github.com/editorconfig-checker/editorconfig-checker
     rev: v3.6.0
     hooks:
