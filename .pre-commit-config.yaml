@@ -1,0 +1,26 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+    -   id: trailing-whitespace
+        # Two or more spaces at the end of the line are parsed as hard line break
+        exclude_types: [markdown]
+    -   id: end-of-file-fixer
+    -   id: check-yaml
+    -   id: check-toml
+    -   id: check-added-large-files
+    # TODO: replace with autoformating hook
+-   repo: https://github.com/editorconfig-checker/editorconfig-checker
+    rev: v3.6.0
+    hooks:
+    -   id: editorconfig-checker
+        name: run editorconfig-checker excluding markdown
+        exclude_types: [markdown]
+    -   id: editorconfig-checker
+        name: run editorconfig-checker for markdown
+        # Disable indent size check for code block
+        # See https://github.com/editorconfig-checker/editorconfig-checker/issues/351
+        args: [-disable-indent-size]
+        types_or: [markdown]
