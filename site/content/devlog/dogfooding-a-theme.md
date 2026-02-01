@@ -68,6 +68,8 @@ We've already created the Hugo site and pushed it to GitHub. Now is the time to 
             path = 'github.com/imomaliev/blog/theme'
     ```
 
+    Commit changes.
+
     ```console
     $ git add -u
     $ git commit -m 'import local theme'
