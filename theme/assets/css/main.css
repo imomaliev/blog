@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @source "hugo_stats.json";
+@plugin "@tailwindcss/typography";
 
 body {
   color: #222;
