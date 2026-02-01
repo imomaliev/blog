@@ -1,3 +1,4 @@
+# Hugo
 # Copied from: https://github.com/github/gitignore/blob/main/community/Golang/Hugo.gitignore
 # License: CC0 1.0 Universal
 
@@ -14,3 +15,42 @@ hugo.linux
 
 # Temporary lock file while building
 /.hugo_build.lock
+
+# Bun
+# Copied from: https://github.com/oven-sh/bun/blob/main/src/cli/init/gitignore.default
+# License: MIT
+
+# dependencies (bun install)
+node_modules
+
+# output
+out
+dist
+*.tgz
+
+# code coverage
+coverage
+*.lcov
+
+# logs
+logs
+_.log
+report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
+
+# dotenv environment variable files
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
+
+# caches
+.eslintcache
+.cache
+*.tsbuildinfo
+
+# IntelliJ based IDEs
+.idea
+
+# Finder (MacOS) folder config
+.DS_Store
