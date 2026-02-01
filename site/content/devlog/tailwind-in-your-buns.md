@@ -1,7 +1,7 @@
 ---
 title: "Tailwind in Your Buns"
 date: "2026-02-01T15:03:44Z"
-tags: ["hugo", "tailwindcss", "bun"]
+tags: ["hugo", "tailwindcss", "bun", "github-actions"]
 ---
 
 My background is mostly in backend development; frontend is not my forte, but when I tried [TailwindCSS](https://tailwindcss.com/) in one of my previous projects, I really liked it. I decided to use it in my blog as well.
@@ -175,6 +175,8 @@ index 02c2240..13f1cd6 100644
  {{ partialCached "head/js.html" . }}
 ```
 
+TailwindCSS is installed and configured.
+
 ## Install Typography plugin
 
 One of the reasons I prefer using TailwindCSS is its [typography plugin](https://github.com/tailwindlabs/tailwindcss-typography).
@@ -197,6 +199,54 @@ index cae7ba4..66b0f49 100644
 
  body {
    color: #222;
+```
+
+## Update workflow to use Bun instead of Node
+
+Bun provides an official GitHub Action and the [guide](https://bun.com/docs/guides/runtime/cicd) how to use it. I've gone through `.github/workflows/hugo.yaml` and updated it to use Bun instead of Node.js
+
+```diff
+diff --git a/.github/workflows/hugo.yaml b/.github/workflows/hugo.yaml
+index d8cc26d..1321606 100644
+--- a/.github/workflows/hugo.yaml
++++ b/.github/workflows/hugo.yaml
+@@ -23,7 +23,7 @@ jobs:
+     env:
+       GO_VERSION: 1.25.5
+       HUGO_VERSION: 0.154.4
+-      NODE_VERSION: 24.12.0
++      BUN_VERSION: 1.3.7
+       TZ: Europe/Oslo
+     steps:
+       - name: Checkout
+@@ -36,10 +36,10 @@ jobs:
+         with:
+           go-version: ${{ env.GO_VERSION }}
+           cache: false
+-      - name: Setup Node.js
+-        uses: actions/setup-node@v6
++      - name: Setup Bun
++        uses: oven-sh/setup-bun@v2
+         with:
+-          node-version: ${{ env.NODE_VERSION }}
++          bun-version: ${{ env.BUN_VERSION }}
+       - name: Setup Pages
+         id: pages
+         uses: actions/configure-pages@v5
+@@ -57,10 +57,10 @@ jobs:
+         run: |
+           echo "Go: $(go version)"
+           echo "Hugo: $(hugo version)"
+-          echo "Node.js: $(node --version)"
+-      - name: Install Node.js dependencies
++          echo "Bun: $(bun --version)"
++      - name: Install Bun dependencies
+         run: |
+-          [[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true
++          [[ -f bun.lock ]] && bun install --frozen-lockfile || true
+       - name: Configure Git
+         run: |
+           git config core.quotepath false
 ```
 
 The setup is complete; we are ready to style our site.
