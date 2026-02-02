@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "content:til": "sh -c 'hugo new content --kind til ../../tils/$1' --"
+  },
   "dependencies": {},
   "devDependencies": {
     "@tailwindcss/cli": "^4.1.18",
