@@ -121,7 +121,7 @@ Because I am making my TILs easily readable from the project's repo page apart f
 
 ![title doubling](title-doubling.png)
 
-To fix that, I will be adding a custom layout template for a single page, and also I do not like having `.Summary` in the sections page.
+To fix that, I will be adding a custom layout template for a single page. Also, I do not like having `.Summary` in the sections page, so I am going to update that as well.
 
 1. Add `theme/layouts/tils/page.html`.
 
@@ -182,3 +182,22 @@ $ bun content:til {topic}-{title}.md
 ```
 
 Much better.
+
+## Final touches
+
+I do not like having my TILs listed on home page, let's [filter them out](https://gohugo.io/functions/collections/where/#string-comparison).
+
+```diff
+diff --git a/theme/layouts/home.html b/theme/layouts/home.html
+index 0c76425..88b82ac 100644
+--- a/theme/layouts/home.html
++++ b/theme/layouts/home.html
+@@ -1,6 +1,6 @@
+ {{ define "main" }}
+   {{ .Content }}
+-  {{ range site.RegularPages }}
++  {{ range where site.RegularPages "Section" "ne" "tils" }}
+     <section>
+       <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+       {{ .Summary }}
+```
