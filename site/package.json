@@ -1,6 +1,9 @@
 {
   "scripts": {
-    "content:til": "sh -c 'hugo new content --kind til ../../tils/$1' --"
+    "server": "hugo server -D",
+    "content:devlog": "sh -c 'hugo new content --kind devlog devlog/$1.md' --",
+    "content:devlog-bundle": "sh -c 'hugo new content --kind devlog-bundle devlog/$1/index.md' --",
+    "content:til": "sh -c 'hugo new content --kind til ../../tils/$1.md' --"
   },
   "dependencies": {},
   "devDependencies": {
