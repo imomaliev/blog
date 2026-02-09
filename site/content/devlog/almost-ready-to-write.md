@@ -51,7 +51,41 @@ We have the site, we have the theme, and according to [the quickstart guide](htt
     ```
 1. Add our first [section](https://gohugo.io/content-management/sections/#article).
 
-    I will call it `Devlog` and here I will write my blog development journey.
+    I will call it `Devlog` and here I will write my blog's development journey.
+
+    ```console
+    $ mkdir theme/content/devlog
+    $ touch theme/content/devlog/_index.md
+    ```
+
+    Add section's front matter to `theme/content/devlog/_index.md`.
+
+    ```md
+    ---
+    title: "Devlog"
+    ---
+    ```
+
+    And show it in menu.
+
+    ```diff
+    diff --git a/theme/hugo.toml b/theme/hugo.toml
+    index 5c26950..dccaed7 100644
+    --- a/theme/hugo.toml
+    +++ b/theme/hugo.toml
+    @@ -9,8 +9,8 @@ title = 'My New Hugo Site'
+         weight = 10
+
+       [[menus.main]]
+    -    name = 'Posts'
+    -    pageRef = '/posts'
+    +    name = 'Devlog'
+    +    pageRef = '/devlog'
+         weight = 20
+
+       [[menus.main]]
+
+    ```
 
 1. Final touch.
 
