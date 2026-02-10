@@ -12,3 +12,7 @@
     @apply text-links;
   }
 }
+
+@utility prose-theme {
+  --tw-prose-links: var(--color-links);
+}
