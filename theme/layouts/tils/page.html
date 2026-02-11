@@ -1,5 +1,5 @@
 {{ define "main" }}
-  <article class="prose prose-theme lg:prose-lg">
+  <article class="prose prose-theme lg:prose-lg mx-auto">
     <h1>{{ .Title }}</h1>
 
     {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
