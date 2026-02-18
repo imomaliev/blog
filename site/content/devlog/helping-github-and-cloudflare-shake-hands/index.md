@@ -6,8 +6,6 @@ tags: ["github-pages", "cloudflare", "dns", "cloudflare-dns"]
 
 I am using [Cloudflare DNS](https://developers.cloudflare.com/dns/manage-dns-records/how-to/create-dns-records/#edit-dns-records) for my domain, and I did not know that there were additional steps I needed to take for the domain to work properly and have HTTPS enabled.
 
-<!--more-->
-
 1. To pass the DNS check on GitHub's side, disable [proxying through Cloudflare](https://developers.cloudflare.com/dns/proxy-status/).
 
     From this:

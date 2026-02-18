@@ -1,6 +1,7 @@
 ---
 title: "Today I Learned"
 date: "2026-02-02T19:56:32Z"
+tags: ["hugo", "bun", "hugo-archetype", "bun-scripts", "til"]
 ---
 
 One of the first instances of me trying to learn in public was creating a [TIL repo](https://github.com/imomaliev/til) inspired by [Josh Branchaud](https://github.com/jbranchaud/til). I believe it will be good to have a TILs section in this blog as well.
