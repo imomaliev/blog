@@ -81,9 +81,8 @@ I would like to replace them one-to-one with TailwindCSS's utility classes mostl
 Most of these styles we can just replace with existing classes with 3 exceptions:
 
 1. The theme uses two base colors, `#222` for text and `#00e` for hyperlinks. TailwindCSS does not have these colors in it's [color pallete](https://tailwindcss.com/docs/colors). I will be adding them as `@theme`'s [custom colors](https://tailwindcss.com/docs/colors#customizing-your-colors).
-1. Hugo's theme also sets `font-family: sans-serif`, which does not match default fonts, so I need to add a [custom font as well](https://tailwindcss.com/docs/font-family#customizing-your-theme).
-1. The theme disables `a` tag underlining with `text-decoration: none;`, preflight does this [out of the box](https://github.com/tailwindlabs/tailwindcss/blob/main/packages/tailwindcss/preflight.css#L87), so we do not need to port this.
-1. Preflight also [sets the default font to sans](https://github.com/tailwindlabs/tailwindcss/blob/1b16411919457ee47d38910fd07e134e9765eb4c/packages/tailwindcss/preflight.css#L33C3-L33C14), which means we can skip porting it as well.
+1. Hugo's theme also sets `font-family: sans-serif`, but Preflight [sets the default font to sans](https://github.com/tailwindlabs/tailwindcss/blob/1b16411919457ee47d38910fd07e134e9765eb4c/packages/tailwindcss/preflight.css#L33C3-L33C14), which means we can skip porting it.
+1. The theme disables `a` tag underlining with `text-decoration: none;`, preflight does this [out of the box](https://github.com/tailwindlabs/tailwindcss/blob/main/packages/tailwindcss/preflight.css#L87), so we do not need to port this either.
 1. To apply styles to all `a` tags, we need to [update base layer styles](https://tailwindcss.com/docs/preflight#extending-preflight).
 
 Our `theme/assets/css/main.css` now looks like this:
