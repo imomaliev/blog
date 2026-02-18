@@ -3,7 +3,6 @@
   {{ range where site.RegularPages "Section" "ne" "tils" }}
     <section>
       <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-      {{ .Summary }}
     </section>
   {{ end }}
 {{ end }}
