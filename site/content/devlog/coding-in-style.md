@@ -10,7 +10,8 @@ I can update the indentation configuration in neovim, but I think a much nicer o
 
 ## EditorConfig
 
-1. ```console
+1. Create `.editorconfig`
+    ```console
     $ touch .editorconfig
     ```
 2. Configure EditorConfig for available file types.
@@ -53,7 +54,8 @@ Neovim supports `.editorconfig` out of the box[^1], but it doesn't automatically
 
 ## pre-commit
 
-1. ```console
+1. Create `.pre-commit-config.yaml`
+    ```console
     $ touch .pre-commit-config.yaml
     ```
 1. Add hooks
